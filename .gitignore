@@ -4,6 +4,9 @@ node_modules
 # bower components
 bower_components
 
+# build
+dist
+
 src/.sass-cache/
 
 .idea
