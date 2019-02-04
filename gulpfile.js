@@ -13,6 +13,7 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     clean = require('gulp-clean'),
     del = require('del'),
+    nodemon = require('gulp-nodemon'),
     browserSync = require('browser-sync');
 
 var onError = function (err) {
@@ -30,7 +31,7 @@ gulp.task('check-js-style', function () {
 
 gulp.task('serve', ['default', 'watch'], function () {
     var files = [
-        './dist/*.html',
+        './dist/*.jade',
         './dist/public/css/**/*.css',
         './dist/public/js/**/*.js'
     ];
@@ -41,6 +42,15 @@ gulp.task('serve', ['default', 'watch'], function () {
         }
     });
 });
+
+gulp.task('start', ['build'], function (done) {
+    nodemon({
+      script: './dist/bin/www/www'
+    , ext: 'js jade css scss'
+    , env: { 'NODE_ENV': 'development' }
+    , done: done
+    });
+  })
 
 gulp.task('scss', function () {
     return gulp.src('./src/public/css/application.scss')
@@ -59,7 +69,7 @@ gulp.task('babel', ['scss'], function () {
 gulp.task('watch', function () {
     gulp.watch('./src/**/*.scss', ['default']);
     gulp.watch('./src/**/*.js', ['default']);
-    gulp.watch('./src/**/*.html', ['default']);
+    gulp.watch('./src/**/*.jade', ['default']);
 });
 
 gulp.task('jshint', ['babel', 'scss'], function () {

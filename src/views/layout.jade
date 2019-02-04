@@ -1,0 +1,39 @@
+//
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  https://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+html(lang='en', xmlns='http://www.w3.org/1999/html')
+  head
+    include ./includes/header.jade
+
+ 
+  body
+    .mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header.is-small-screen
+      include ./includes/top_menu.jade
+
+      include ./includes/navigation_menu.jade
+
+      block content
+
+  script(src='js/d3.min.js')
+  script(src='js/getmdl-select.min.js')
+  script(src='js/material.min.js')
+  script(src='js/nv.d3.min.js')
+  script(src='js/layout.min.js')
+  script(src='js/chart1.min.js')
+  script(src='js/chart2.min.js')
+  script(src='js/discreteBarChart.min.js')
+  script(src='js/line-chart-nvd3.min.js')
+  script(src='js/employer-form.min.js')
+  script(src='js/maps.min.js')
+  script(src='js/pie-chart-nvd3.min.js')
+  script(src='js/table.min.js')
+  script(src='js/todo.min.js')
