@@ -4,11 +4,36 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+
+mongoose.Promise = global.Promise;
+
+mongoose.connect('mongodb://localhost/mixedcad360')
+  .then(() =>  console.log('connected to mongoDB (base mixedcad360)'))
+  .catch((err) => console.error(err));
+
+  
 
 
 var indexRouter = require('./routes/index');
 
 var app = express();
+
+app.use(require('express-session')({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+var User = require('./models/user');
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

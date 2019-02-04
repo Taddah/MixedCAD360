@@ -1,131 +1,56 @@
 header.mdl-layout__header
   .mdl-layout__header-row
           .mdl-layout-spacer
-          // Search
-          .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable
-            label.mdl-button.mdl-js-button.mdl-button--icon(for='search')
-              i.material-icons search
-            .mdl-textfield__expandable-holder
-              input#search.mdl-textfield__input(type='text')
-              label.mdl-textfield__label(for='search') Enter your query...
-          #notification.material-icons.mdl-badge.mdl-badge--overlap.mdl-button--icon.notification(data-badge='23')
-            | notifications_none
-          // Notifications dropdown
-          ul.mdl-menu.mdl-list.mdl-js-menu.mdl-js-ripple-effect.mdl-menu--bottom-right.mdl-shadow--2dp.notifications-dropdown(for='notification')
-            li.mdl-list__item
-              | You have 23 new notifications!
-            li.mdl-menu__item.mdl-list__item.list__item--border-top
-              span.mdl-list__item-primary-content
-                span.mdl-list__item-avatar.background-color--primary
-                  i.material-icons plus_one
-                span You have 3 new orders.
-              span.mdl-list__item-secondary-content
-                span.label just now
-            li.mdl-menu__item.mdl-list__item.list__item--border-top
-              span.mdl-list__item-primary-content
-                span.mdl-list__item-avatar.background-color--secondary
-                  i.material-icons error_outline
-                span Database error
-              span.mdl-list__item-secondary-content
-                span.label 1 min
-            li.mdl-menu__item.mdl-list__item.list__item--border-top
-              span.mdl-list__item-primary-content
-                span.mdl-list__item-avatar.background-color--primary
-                  i.material-icons new_releases
-                span The Death Star is built!
-              span.mdl-list__item-secondary-content
-                span.label 2 hours
-            li.mdl-menu__item.mdl-list__item.list__item--border-top
-              span.mdl-list__item-primary-content
-                span.mdl-list__item-avatar.background-color--primary
-                  i.material-icons mail_outline
-                span You have 4 new mails.
-              span.mdl-list__item-secondary-content
-                span.label 5 days
-            li.mdl-list__item.list__item--border-top
-              button.mdl-button.mdl-js-button.mdl-js-ripple-effect(href='#') ALL NOTIFICATIONS
-          #inbox.material-icons.mdl-badge.mdl-badge--overlap.mdl-button--icon.message(data-badge='4')
-            | mail_outline
-          // Messages dropdown
-          ul.mdl-menu.mdl-list.mdl-js-menu.mdl-js-ripple-effect.mdl-menu--bottom-right.mdl-shadow--2dp.messages-dropdown(for='inbox')
-            li.mdl-list__item
-              | You have 4 new messages!
-            li.mdl-menu__item.mdl-list__item.mdl-list__item--two-line.list__item--border-top
-              span.mdl-list__item-primary-content
-                span.mdl-list__item-avatar.background-color--primary
-                  text A
-                span Alice
-                span.mdl-list__item-sub-title Birthday Party
-              span.mdl-list__item-secondary-content
-                span.label.label--transparent just now
-            li.mdl-menu__item.mdl-list__item.mdl-list__item--two-line.list__item--border-top
-              span.mdl-list__item-primary-content
-                span.mdl-list__item-avatar.background-color--baby-blue
-                  text M
-                span Mike
-                span.mdl-list__item-sub-title No theme
-              span.mdl-list__item-secondary-content
-                span.label.label--transparent 5 min
-            li.mdl-menu__item.mdl-list__item.mdl-list__item--two-line.list__item--border-top
-              span.mdl-list__item-primary-content
-                span.mdl-list__item-avatar.background-color--cerulean
-                  text D
-                span Darth
-                span.mdl-list__item-sub-title Suggestion
-              span.mdl-list__item-secondary-content
-                span.label.label--transparent 23 hours
-            li.mdl-menu__item.mdl-list__item.mdl-list__item--two-line.list__item--border-top
-              span.mdl-list__item-primary-content
-                span.mdl-list__item-avatar.background-color--mint
-                  text D
-                span Don McDuket
-                span.mdl-list__item-sub-title NEWS
-              span.mdl-list__item-secondary-content
-                span.label.label--transparent 30 Nov
-            li.mdl-list__item.list__item--border-top
-              button.mdl-button.mdl-js-button.mdl-js-ripple-effect(href='#') SHOW ALL MESSAGES
-          #icon.avatar-dropdown
-            span Luke
-            img(src='images/Icon_header.png')
-          // Account dropdawn
-          ul.mdl-menu.mdl-list.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect.mdl-shadow--2dp.account-dropdown(for='icon')
-            li.mdl-list__item.mdl-list__item--two-line
-              span.mdl-list__item-primary-content
-                span.material-icons.mdl-list__item-avatar
-                span Luke
-                span.mdl-list__item-sub-title Luke@skywalker.com
-            li.list__item--border-top
-            li.mdl-menu__item.mdl-list__item
-              span.mdl-list__item-primary-content
-                i.material-icons.mdl-list__item-icon account_circle
-                |                         My account
-            li.mdl-menu__item.mdl-list__item
-              span.mdl-list__item-primary-content
-                i.material-icons.mdl-list__item-icon check_box
-                |                         My tasks
-              span.mdl-list__item-secondary-content
-                span.label.background-color--primary 3 new
-            li.mdl-menu__item.mdl-list__item
-              span.mdl-list__item-primary-content
-                i.material-icons.mdl-list__item-icon perm_contact_calendar
-                |                         My events
-            li.list__item--border-top
-            li.mdl-menu__item.mdl-list__item
-              span.mdl-list__item-primary-content
-                i.material-icons.mdl-list__item-icon settings
-                |                         Settings
-            li.mdl-menu__item.mdl-list__item
-              span.mdl-list__item-primary-content
-                i.material-icons.mdl-list__item-icon.text-color--secondary exit_to_app
-                |                         Log out
-          button#more.mdl-button.mdl-js-button.mdl-button--icon
-            i.material-icons more_vert
-          ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect.mdl-shadow--2dp.settings-dropdown(for='more')
-            li.mdl-menu__item
-              | Settings
-            a.mdl-menu__item(href='https://github.com/CreativeIT/getmdl-dashboard/issues')
-              | Support
-            li.mdl-menu__item
-              | F.A.Q.
+          if (!user)
+              nav.mdl-navigation
+                a.mdl-navigation__link(href='/register')
+                  |                 Register
+                a.mdl-navigation__link(href='/login')
+                  |                 Login   
+          if (user)
+              #icon.avatar-dropdown
+                span #{user.username}
+                img(src='images/Icon_header.png')
+
+              // Account dropdawn
+              ul.mdl-menu.mdl-list.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect.mdl-shadow--2dp.account-dropdown(for='icon')
+                li.mdl-list__item.mdl-list__item--two-line
+                  span.mdl-list__item-primary-content
+                    span.material-icons.mdl-list__item-avatar
+                    span Luke
+                    span.mdl-list__item-sub-title Luke@skywalker.com
+                li.list__item--border-top
+                li.mdl-menu__item.mdl-list__item
+                  span.mdl-list__item-primary-content
+                    i.material-icons.mdl-list__item-icon account_circle
+                    |                         My account
+                li.mdl-menu__item.mdl-list__item
+                  span.mdl-list__item-primary-content
+                    i.material-icons.mdl-list__item-icon check_box
+                    |                         My tasks
+                  span.mdl-list__item-secondary-content
+                    span.label.background-color--primary 3 new
+                li.mdl-menu__item.mdl-list__item
+                  span.mdl-list__item-primary-content
+                    i.material-icons.mdl-list__item-icon perm_contact_calendar
+                    |                         My events
+                li.list__item--border-top
+                li.mdl-menu__item.mdl-list__item
+                  span.mdl-list__item-primary-content
+                    i.material-icons.mdl-list__item-icon settings
+                    |                         Settings
+                li.mdl-menu__item.mdl-list__item
+                  span.mdl-list__item-primary-content
+                    i.material-icons.mdl-list__item-icon.text-color--secondary exit_to_app
+                    |                         Log out
+              button#more.mdl-button.mdl-js-button.mdl-button--icon
+                i.material-icons more_vert
+              ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect.mdl-shadow--2dp.settings-dropdown(for='more')
+                li.mdl-menu__item
+                  | Settings
+                a.mdl-menu__item(href='https://github.com/CreativeIT/getmdl-dashboard/issues')
+                  | Support
+                li.mdl-menu__item
+                  | F.A.Q.
 
   

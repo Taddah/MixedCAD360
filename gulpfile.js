@@ -161,6 +161,12 @@ gulp.task('build', ['minifyJs', 'minifyCss', 'copyMinCssLib', 'copyMinJsLib'], f
     gulp.src('src/views/**/*')
         .pipe(gulp.dest('dist/views'));
 
+    gulp.src('src/controllers/**/*')
+        .pipe(gulp.dest('dist/controllers'));
+
+    gulp.src('src/models/**/*')
+        .pipe(gulp.dest('dist/models'));
+
     gulp.src('src/bin/www')
         .pipe(gulp.dest('dist/bin/www'));
 
