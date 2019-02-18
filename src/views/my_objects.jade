@@ -1,0 +1,100 @@
+
+extends ./layout.jade
+
+block content
+    main.mdl-layout__content
+        if(user.objects > 0)
+            .mdl-grid.ui-cards
+                .mdl-cell.mdl-cell--12-col-desktop.mdl-cell--12-col-tablet.mdl-cell--4-col-phone
+                        h3 Objects of #{user.username} = #{user.objects}
+                            .mdl-cell.mdl-cell--4-col-desktop.mdl-cell--4-col-tablet.mdl-cell--2-col-phone
+                                .mdl-card.mdl-shadow--2dp
+                                    .mdl-card__title
+                                        h2.mdl-card__title-text Istanbul
+                                    .mdl-card__supporting-text
+                                        small City in Turkey
+                                        |                         Istanbul is a major city in Turkey that straddles Europe and Asia across the Bosphorus Strait.
+                                        |                         Its Old City reflects cultural influences of the many empires that once ruled here.
+                                        |                         In the Sultanahmet district, the open-air, Roman-era Hippodrome was for centuries the site of chariot races,
+                                        |                         and Egyptian obelisks also remain.
+                                        |                         The iconic Byzantine Hagia Sophia features a soaring 6th-century dome and rare Christian mosaics.
+                                        br
+                                        br
+                                        b Weather:
+                                        |  12°C, Wind S at 13 km/h, 71% Humidity
+                                        br
+                                        b Local time:
+                                        |  Friday 4:00 PM
+                                        br
+                                        b Population:
+                                        |  14.8 million (Dec 31, 2016)
+                            .mdl-cell.mdl-cell--4-col-desktop.mdl-cell--4-col-tablet.mdl-cell--2-col-phone
+                                .mdl-card.mdl-shadow--2dp
+                                    .mdl-card__title
+                                        h2.mdl-card__title-text Tokyo
+                                    .mdl-card__supporting-text.mdl-card--expand
+                                        small Capital of Japan
+                                        |                         Tokyo, officially Tokyo Metropolis, is the capital of Japan and one of its 47 prefectures.
+                                        |                         The Greater Tokyo Area is the most populous metropolitan area in the world.
+                                        |                         It is the seat of the Emperor of Japan and the Japanese government.
+                                        a.color-text--light-blue(href='https://en.wikipedia.org/wiki/Tokyo', target='_blank') Wikipedia
+                                        br
+                                        br
+                                        b Weather:
+                                        |  5°C, Wind NW at 26 km/h, 54% Humidity
+                                        br
+                                        b Local time:
+                                        |  Friday 10:04 PM
+                                        br
+                                        b Population:
+                                        |  13.62 million (Jul 31, 2016)
+                                    .mdl-card__actions.mdl-card--border
+                                        a.mdl-button.color-text--light-blue.mdl-js-button.mdl-js-ripple-effect(href='https://www.google.by/maps/place/Tokyo,+Japan/@35.6730185,139.4302008,10z/data=!3m1!4b1!4m5!3m4!1s0x605d1b87f02e57e7:0x2e01618b22571b89!8m2!3d35.6894875!4d139.6917064', target='_blank')
+                                            | Show on map
+                            .mdl-cell.mdl-cell--4-col-desktop.mdl-cell--4-col-tablet.mdl-cell--2-col-phone
+                                .mdl-card.mdl-shadow--2dp
+                                    .mdl-card__title
+                                        h2.mdl-card__title-text São Paulo
+                                    .mdl-card__supporting-text.mdl-card--expand
+                                        small Municipality in Brazil
+                                        |                         São Paulo, Brazil’s vibrant financial center, is among the world's most populous cities,
+                                        |                         with numerous cultural institutions and a rich architectural tradition.
+                                        |                         Its iconic buildings range from its neo-Gothic cathedral and the 1929 Martinelli skyscraper to modernist
+                                        |                         architect Oscar Niemeyer’s curvy Edifício Copan.
+                                        |                         The colonial-style Pátio do Colégio church marks where Jesuit priests founded the city in 1554.
+                                        br
+                                        br
+                                        b Weather:
+                                        |  24°C, Wind E at 10 km/h, 62% Humidity
+                                        br
+                                        b Local time:
+                                        |  Friday 10:05 AM
+                                        br
+                                        b Population:
+                                        |  12.04 million (2016)
+                                    .mdl-card__actions
+                                        a.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored-light-blue.pull-right(href='https://www.google.by/maps/place/S%C3%A3o+Paulo,+State+of+S%C3%A3o+Paulo,+Brazil/data=!4m2!3m1!1s0x94ce448183a461d1:0x9ba94b08ff335bae?sa=X&ved=0ahUKEwjQ1pf_g_fSAhVHWSwKHQoNDc0Q8gEIjwEwEQ', target='_blank')
+                                            | Show on map
+                                        button.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored
+                                        i.material-icons favorite_border
+                                    .mdl-card__menu
+                                        button.mdl-button.mdl-button--icon.mdl-js-button.mdl-js-ripple-effect
+                                            i.material-icons share
+
+        else
+            .mdl-grid.ui-buttons
+                .mdl-cell.mdl-cell--3-col-desktop.mdl-cell--3-col-tablet.mdl-cell--2-col-phone.buttons-basic
+                    .mdl-card.mdl-shadow--2dp
+                        .mdl-card__title
+                            h2.mdl-card__title-text Empty !
+                        .mdl-card__supporting-text
+                            | Your objects library is empty, click on the following button to add a new object !
+                            br
+                            li.mdl-list__item
+                                form.form(role='form', action='/uploadObject', method='get')
+                                    button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored-light-blue(type="submit")
+                                        | Upload
+
+                                                            
+            
+            

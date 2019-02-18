@@ -4,12 +4,13 @@
       a.mdl-navigation__link.mdl-navigation__link(href='/')
         i.material-icons(role='presentation') dashboard
         |                 Index
-      a.mdl-navigation__link(href='/')
-        i.material-icons(role='presentation') person
-        |                 My account
-      a.mdl-navigation__link(href='/')
-        i.material-icons(role='presentation') map
-        |                 My 3D objects
+      if (user)
+        a.mdl-navigation__link(href='/')
+          i.material-icons(role='presentation') person
+          |                 My account
+        a.mdl-navigation__link(href='/myObjects')
+          i.material-icons(role='presentation') map
+          |                 My 3D objects
       a.mdl-navigation__link(href='/')
         i.material-icons multiline_chart
         |                 Community
