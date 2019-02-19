@@ -4,6 +4,8 @@ node_modules
 # bower components
 bower_components
 
+uploads
+
 # build
 dist
 

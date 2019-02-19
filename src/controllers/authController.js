@@ -25,10 +25,6 @@ userController.uploadObject = function(req, res){
     res.render('login');
 }
 
-userController.processobjectupload = function(req, res){
-  console.log(req.file);
-}
-
 // Go to registration page
 userController.register = function(req, res) {
   res.render('register');
