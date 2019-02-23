@@ -1,23 +1,17 @@
-//- upload_object.jade
-
-extends ./layout.jade
-
-block content
-  main.mdl-layout__content.mdl-color--grey-100
-        .mdl-card.mdl-shadow--2dp.employer-form(action='#')
+.mdl-cell.mdl-cell--4-col-desktop.mdl-cell--4-col-tablet.mdl-cell--2-col-phone
+        .mdl-card.mdl-shadow--2dp
             .mdl-card__title
-              h2 Upload a new object
+                h2.mdl-card__title-text Upload a new object
             .mdl-card__supporting-text
-              form.form(role='form', action='/processobjectupload', method='post', enctype='multipart/form-data')
+                form.form(role='form', action='/processobjectupload', method='post', enctype='multipart/form-data')
                   .form__article
                       .mdl-grid
                           .mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
                             input#identifiant.mdl-textfield__input(type='text', name='objectName', required, autofocus)
                             label.mdl-textfield__label(for='objectName') Object's name
                           .mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-                            input(type='file', name='file', accept='.obj,.fbx')
+                            input(type='file', name='file', accept='.obj,.fbx', required)
                             label.mdl-textfield__label(for='file') File
                   .form__action
                     button#submit_button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored(type='submit')
                         | Submit
-  

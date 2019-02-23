@@ -11,17 +11,9 @@ var storage = multer.diskStorage({
     cb(null, file.fieldname + '-' + Date.now())
   }
 });
-var upload = multer({storage: storage, 
-  fileFilter: function (req, file, cb) {
-    if (!file.originalname.match(/\.(fbx|obj)$/)) {
-        return cb(new Error('Only 3D object files are allowed!'));
-    }
-    cb(null, true);
-  }
-});
-var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
-var url = 'mongodb://localhost:27017/mixedcad360';
+var upload = multer({storage: storage});
+var Object = require("../models/object");
+var UserSchema = require("../models/user");
 
 // restrict index for logged in user only
 router.get('/', auth.home);
@@ -43,32 +35,43 @@ router.get('/logout', auth.logout);
 
 router.get('/myObjects', auth.myObjects);
 
-router.get('/uploadObject', auth.uploadObject);
+/*
+router.post('/objectdetail', (req, res, next) => {
+  if(req.user != null){
+    console.log('res = ' + req.body.test);
+    Object.find({ _id: req.body.objectId}, function (err, docs) {
+      res.render('object_detail', { user : req.user, object : docs});
+    });
+  }
+  else
+    res.render('login');
+});*/
+
+router.post('/objectdetail', (req, res, next) => {
+  if(req.user != null){
+    Object.findOne({ _id: req.body.objectId}, function (err, docs) {
+      console.log(docs);
+      res.render('object_detail', { user : req.user, object : docs});
+    });
+  }
+  else
+    res.render('login');
+});
 
 router.post('/processobjectupload', upload.single('file'), (req, res, next) => {
-  if(err) res.render('upload_object', { user : req.user });
+  
+  const newObject = new Object({ 
+    imagePath: 'uploads/ ' + req.file.filename,
+    username: req.user.username,
+    objectname: req.body.objectName });
 
-    MongoClient.connect(url, (err, db) => {
-        assert(null, err);
+  newObject.save();
 
-        //Ajout du chemin de l'objet dans la BDD (+ autres infos)
-        db.collection('objects').insertOne(
-          {'imagePath' : 'uploads/' + req.file.filename, 
-          'username' : req.user.username,
-          'objectName': req.body.objectName }, 
-          (err, result) => {
-            if ( err ) throw err;
-        });
+  UserSchema.findOneAndUpdate({ username: req.user.username }, { $inc: { objects: 1 } }, {new: true },function(err, response) {
+    if (err) return res.send(500, { error: err });
+  });
 
-        //Update de l'user (nombre d'objet)
-        db.collection( 'users' ).update (
-          { username : req.user.username },
-          { $inc : { objects:1 } },
-          function( err, result ) {
-              if ( err ) throw err;
-        });
-    });
-    res.render('index', { user : req.user });
+  res.render('my_objects', { user : req.user });
 });
 
 module.exports = router;

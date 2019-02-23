@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
 var passport = require("passport");
 var User = require("../models/user");
+var Object = require("../models/object");
 
 
 var userController = {};
@@ -12,18 +13,14 @@ userController.home = function(req, res) {
 
 // Restrict access to myObjects page
 userController.myObjects = function(req, res) {
-  if(req.user != null)
-    res.render('my_objects', { user : req.user });
+  if(req.user != null){
+    Object.find({ username: req.user.username}, function (err, docs) {
+      res.render('my_objects', { user : req.user, objects : docs});
+    });
+  }
   else
     res.render('login');
 };
-
-userController.uploadObject = function(req, res){
-  if(req.user != null)
-    res.render('upload_object', { user : req.user });
-  else
-    res.render('login');
-}
 
 // Go to registration page
 userController.register = function(req, res) {
