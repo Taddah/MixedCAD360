@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ObjectSchema = new Schema({
-    imagePath: String,
+    objectPath: String,
+    materialPath: String,
     username: String,
     objectname: String
 });

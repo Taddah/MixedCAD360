@@ -2,103 +2,70 @@ extends ./layout.jade
 
 block content
     main.mdl-layout__content
-        .mdl-grid.mdl-grid--no-spacing
+        .mdl-grid
             .mdl-grid.mdl-cell.mdl-cell--9-col-desktop.mdl-cell--12-col-tablet.mdl-cell--4-col-phone.mdl-cell--top
                 .mdl-cell.mdl-cell--8-col-desktop.mdl-cell--8-col-tablet.mdl-cell--3-col-phone
                     .mdl-card.mdl-shadow--2dp
                         .mdl-card__title
                             h2.mdl-card__title-text #{object.objectname}
                         .mdl-card__supporting-text
-                            #container
-                            script(src='js/three.min.min.js')
-                            script.
-                                // Set the scene size.
-                                const WIDTH = window.innerWidth;
-                                const HEIGHT = window.innerHeight;
+                            .mdl-grid
+                                .mdl-cell.mdl-cell--4-col.mdl-cell--6-col-tablet
+                                    #container
+                                    script(src='https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js')
+                                    script(src='https://threejs.org/examples/js/loaders/OBJLoader.js')
+                                    script(src='https://threejs.org/examples/js/loaders/FBXLoader.js')
+                                    script(src='https://threejs.org/examples/js/controls/OrbitControls.js')
+                                    script(src='https://threejs.org/examples/js/libs/inflate.min.js')
+                                    script(src='https://threejs.org/examples/js/libs/stats.min.js')
+                                    script(src='https://threejs.org/examples/js/loaders/MTLLoader.js')
+                                    script(src='https://threejs.org/examples/js/loaders/DDSLoader.js')
+                                    
+                                    script(src='js/view3DObject.min.js')
+                                    script.
+                                        showObject(document.getElementById('container'), '#{object.objectPath}', '#{object.materialPath}');
+                                .mdl-cell.mdl-cell--4-col.mdl-cell--6-col-phone
+                                    ul.mdl-list
+                                        li.mdl-list__item
+                                            span.mdl-list__item-primary-content.list__item-text Author
+                                            span.mdl-list__item-secondary-content
+                                            span.mdl-list__item-secondary-content.trending__percent Tada
+                                        li.mdl-list__item.list__item--border-top
+                                            span.mdl-list__item-primary-content.list__item-text Upload date
+                                            span.mdl-list__item-secondary-content
+                                            span.mdl-list__item-secondary-content.trending__percent 02/25/2019
+                                        li.mdl-list__item.list__item--border-top
+                                            span.mdl-list__item-primary-content.list__item-text Vertice count
+                                            span.mdl-list__item-secondary-content
+                                            span.mdl-list__item-secondary-content.trending__percent XXXXX
+                                        li.mdl-list__item.list__item--border-top
+                                            span.mdl-list__item-primary-content.list__item-text Polygon count
+                                            span.mdl-list__item-secondary-content
+                                            span.mdl-list__item-secondary-content.trending__percent XXXXX
+                                        li.mdl-list__item.list__item--border-top
+                                            span.mdl-list__item-primary-content Material
+                                            span.mdl-list__item-secondary-content
+                                            span.mdl-list__item-secondary-content.trending__percent yes
 
-                                // Set some camera attributes.
-                                const VIEW_ANGLE = 45;
-                                const ASPECT = WIDTH / HEIGHT;
-                                const NEAR = 0.1;
-                                const FAR = 10000;
+                                    .mdl-cell.mdl-cell--4-col.mdl-cell--6-col-phone
+                                        form.form(role='form', action='/objectdetail', method='post')
+                                            .form__article
+                                                .mdl-grid
+                                                    input#identifiant(type='hidden', name='objectId', value='#{object._id}')
+                                            .form__action
+                                                button#submit_button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored(type='submit')
+                                                    | AR
+                                    .mdl-cell.mdl-cell--4-col.mdl-cell--6-col-phone
+                                        form.form(role='form', action='/objectdetail', method='post')
+                                            .form__article
+                                                .mdl-grid
+                                                    input#identifiant(type='hidden', name='objectId', value='#{object._id}')
+                                            .form__action
+                                                button#submit_button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored-blue.pull-right(type='submit' data-upgraded=',MaterialButton,MaterialRipple', style='')
+                                                    | VR
+                                                    span.mdl-button__ripple-container
+                                                        span.mdl-ripple.is-animating(style='width: 270.763px; height: 270.763px; transform: translate(-50%, -50%) translate(71px, 28px);')
 
-                                // Get the DOM element to attach to
-                                const container =
-                                    document.querySelector('#container');
+                                                
 
-                                // Create a WebGL renderer, camera
-                                // and a scene
-                                const renderer = new THREE.WebGLRenderer();
-                                const camera =
-                                    new THREE.PerspectiveCamera(
-                                        VIEW_ANGLE,
-                                        ASPECT,
-                                        NEAR,
-                                        FAR
-                                    );
 
-                                const scene = new THREE.Scene();
-
-                                // Add the camera to the scene.
-                                scene.add(camera);
-
-                                // Start the renderer.
-                                renderer.setSize(WIDTH, HEIGHT);
-
-                                // Attach the renderer-supplied
-                                // DOM element.
-                                container.appendChild(renderer.domElement);
-
-                                // create a point light
-                                const pointLight =
-                                new THREE.PointLight(0xFFFFFF);
-
-                                // set its position
-                                pointLight.position.x = 10;
-                                pointLight.position.y = 50;
-                                pointLight.position.z = 130;
-
-                                // add to the scene
-                                scene.add(pointLight);
-
-                                // create the sphere's material
-                                const sphereMaterial =
-                                new THREE.MeshLambertMaterial(
-                                    {
-                                    color: 0xCC0000
-                                    });
-
-                                // Set up the sphere vars
-                                const RADIUS = 50;
-                                const SEGMENTS = 16;
-                                const RINGS = 16;
-
-                                // Create a new mesh with
-                                // sphere geometry - we will cover
-                                // the sphereMaterial next!
-                                const sphere = new THREE.Mesh(
-
-                                new THREE.SphereGeometry(
-                                    RADIUS,
-                                    SEGMENTS,
-                                    RINGS),
-
-                                sphereMaterial);
-
-                                // Move the Sphere back in Z so we
-                                // can see it.
-                                sphere.position.z = -300;
-
-                                // Finally, add the sphere to the scene.
-                                scene.add(sphere);
-
-                                function update () {
-                                // Draw!
-                                renderer.render(scene, camera);
-
-                                // Schedule the next frame.
-                                requestAnimationFrame(update);
-                                }
-
-                                // Schedule the first frame.
-                                requestAnimationFrame(update);

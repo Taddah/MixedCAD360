@@ -9,9 +9,13 @@
                           .mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
                             input#identifiant.mdl-textfield__input(type='text', name='objectName', required, autofocus)
                             label.mdl-textfield__label(for='objectName') Object's name
+                      .mdl-grid
                           .mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-                            input(type='file', name='file', accept='.obj,.fbx', required)
-                            label.mdl-textfield__label(for='file') File
+                            input(type='file', name='object', accept='.obj,.fbx', required)
+                            label.mdl-textfield__label(for='object') File
+                          .mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+                            input(type='file', name='material', accept='.mtl')
+                            label.mdl-textfield__label(for='material') File
                   .form__action
                     button#submit_button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored(type='submit')
                         | Submit

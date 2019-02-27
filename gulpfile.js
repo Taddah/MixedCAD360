@@ -13,7 +13,9 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     clean = require('gulp-clean'),
     del = require('del'),
+    rimraf = require("gulp-rimraf"),
     nodemon = require('gulp-nodemon'),
+    ignore = require('gulp-ignore'),
     browserSync = require('browser-sync');
 
 var onError = function (err) {
@@ -123,8 +125,10 @@ gulp.task('copyMinCssLib', ['cleanDist'], function () {
         .pipe(gulp.dest('dist/public/css/lib'));
 });
 
+
 gulp.task('cleanDist', function () {
-    return del('dist/**/*');
+    return del(['dist/**/*','!dist/public', '!dist/public/uploads', '!dist/public/uploads/**'], 
+    {force: true});
 });
 
 gulp.task('minifyJs', ['cleanDist'], function () {
@@ -154,6 +158,9 @@ gulp.task('build', ['minifyJs', 'minifyCss', 'copyMinCssLib', 'copyMinJsLib'], f
 
     gulp.src('src/public/images/**/*')
         .pipe(gulp.dest('dist/public/images'));
+
+    gulp.src('src/public/uploads/**/*')
+        .pipe(gulp.dest('dist/public/uploads'));    
     
     gulp.src('src/routes/**/*')
         .pipe(gulp.dest('dist/routes'));
@@ -172,4 +179,7 @@ gulp.task('build', ['minifyJs', 'minifyCss', 'copyMinCssLib', 'copyMinJsLib'], f
 
     gulp.src('src/app.js')
         .pipe(gulp.dest('dist/'));
+
+    gulp.src('*.*', {read: false})
+        .pipe(gulp.dest('./dist/public/uploads'))
 });

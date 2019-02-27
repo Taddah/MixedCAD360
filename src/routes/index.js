@@ -5,7 +5,7 @@ var multer  = require('multer');
 var path = require('path');
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads')
+    cb(null, 'dist/public/uploads')
   },
   filename: (req, file, cb) => {
     cb(null, file.fieldname + '-' + Date.now())
@@ -35,18 +35,6 @@ router.get('/logout', auth.logout);
 
 router.get('/myObjects', auth.myObjects);
 
-/*
-router.post('/objectdetail', (req, res, next) => {
-  if(req.user != null){
-    console.log('res = ' + req.body.test);
-    Object.find({ _id: req.body.objectId}, function (err, docs) {
-      res.render('object_detail', { user : req.user, object : docs});
-    });
-  }
-  else
-    res.render('login');
-});*/
-
 router.post('/objectdetail', (req, res, next) => {
   if(req.user != null){
     Object.findOne({ _id: req.body.objectId}, function (err, docs) {
@@ -58,10 +46,12 @@ router.post('/objectdetail', (req, res, next) => {
     res.render('login');
 });
 
-router.post('/processobjectupload', upload.single('file'), (req, res, next) => {
+router.post('/processobjectupload', upload.fields([{ name: 'object', maxCount: 1 },{ name: 'material', maxCount: 1 }]), (req, res, next) => {
   
+  console.log(req.files.object[0].filename);
   const newObject = new Object({ 
-    imagePath: 'uploads/ ' + req.file.filename,
+    objectPath: 'uploads/' + req.files.object[0].filename,
+    materialPath: 'uploads/' + req.files.material[0].filename,
     username: req.user.username,
     objectname: req.body.objectName });
 
@@ -71,7 +61,7 @@ router.post('/processobjectupload', upload.single('file'), (req, res, next) => {
     if (err) return res.send(500, { error: err });
   });
 
-  res.render('my_objects', { user : req.user });
+  res.redirect('/myObjects');
 });
 
 module.exports = router;
