@@ -3,8 +3,15 @@ html
     script(src='https://aframe.io/releases/0.6.1/aframe.min.js')
     script(src='https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js')
   body(style='margin : 0px; overflow: hidden;')
+    div(style='position: fixed; top: 10px; width:100%; text-align: center; z-index: 1;')
+      button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored-blue.pull-right(data-upgraded=',MaterialButton,MaterialRipple', style='')
+        | VR
+        span.mdl-button__ripple-container
+        span.mdl-ripple.is-animating(style='width: 270.763px; height: 270.763px; transform: translate(-50%, -50%) translate(71px, 28px);')
+
     a-scene(embedded='', arjs='')
       a-marker(preset='hiro')
-        a-entity(position='0 1 0', scale='2 2 2', obj-model='obj: url(object/cat/model.obj);  mtl: url(object/cat/materials.mtl)')
+        a-entity(position='0 1 0', scale='2 2 2', obj-model='obj: url(#{object.objectPath});  mtl: url(#{object.materialPath})')
           a-animation(attribute='rotation', dur='7000', fill='forwards', to='0 360 0', easing='linear', repeat='none')
       a-entity(camera='')
+

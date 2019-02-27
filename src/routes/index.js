@@ -38,7 +38,6 @@ router.get('/myObjects', auth.myObjects);
 router.post('/objectdetail', (req, res, next) => {
   if(req.user != null){
     Object.findOne({ _id: req.body.objectId}, function (err, docs) {
-      console.log(docs);
       res.render('object_detail', { user : req.user, object : docs});
     });
   }
@@ -46,9 +45,17 @@ router.post('/objectdetail', (req, res, next) => {
     res.render('login');
 });
 
+router.post('/augmentedReality', (req, res, next) => {
+  if(req.user != null){
+    Object.findOne({ _id: req.body.objectId}, function (err, docs) {
+      res.render('ra', { user : req.user, object : docs});
+    });
+  }
+  else
+    res.render('login');
+});
+
 router.post('/processobjectupload', upload.fields([{ name: 'object', maxCount: 1 },{ name: 'material', maxCount: 1 }]), (req, res, next) => {
-  
-  console.log(req.files.object[0].filename);
   const newObject = new Object({ 
     objectPath: 'uploads/' + req.files.object[0].filename,
     materialPath: 'uploads/' + req.files.material[0].filename,
