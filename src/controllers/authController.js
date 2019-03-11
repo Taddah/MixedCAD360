@@ -22,6 +22,17 @@ userController.myObjects = function(req, res) {
     res.render('login');
 };
 
+// Restrict access to community page
+userController.community = function(req, res) {
+  if(req.user != null){
+    Object.find({ }, function (err, docs) {
+      res.render('community', { user : req.user, objects : docs});
+    });
+  }
+  else
+    res.render('login');
+};
+
 // Go to registration page
 userController.register = function(req, res) {
   res.render('register');

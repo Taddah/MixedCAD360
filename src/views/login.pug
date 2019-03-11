@@ -1,0 +1,23 @@
+//- index.pug
+
+extends ./layout.pug
+
+block content
+  main.mdl-layout__content.mdl-color--grey-100
+    .mdl-card.mdl-shadow--2dp.employer-form(action='#')
+      .mdl-card__title
+        h2 Login
+      .mdl-card__supporting-text
+        form.form(role='form', action='/login', method='post')
+          .form__article
+            .mdl-grid
+              .mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+                input#identifiant.mdl-textfield__input(type='text', name='username', required, autofocus)
+                label.mdl-textfield__label(for='username') Username
+              .mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+                input#email.mdl-textfield__input(type='password', name='password')
+                label.mdl-textfield__label(for='password') Password
+          .form__action
+            button#submit_button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored(type='submit')
+              | Login
+

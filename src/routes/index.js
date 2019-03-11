@@ -35,9 +35,17 @@ router.get('/logout', auth.logout);
 
 router.get('/myObjects', auth.myObjects);
 
+router.get('/community', auth.community);
+
+router.get('/form', (req, res, next) => {
+  res.render('form');
+});
+
 router.post('/objectdetail', (req, res, next) => {
   if(req.user != null){
     Object.findOne({ _id: req.body.objectId}, function (err, docs) {
+      console.log(docs)
+      console.log(req.body.objectId)
       res.render('object_detail', { user : req.user, object : docs});
     });
   }

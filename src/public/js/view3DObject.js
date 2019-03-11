@@ -1,7 +1,6 @@
 var showObject = function(container, objectPath, materialPath, timestamp) {
 
     //Set date
-
     var date = new Date(parseInt(timestamp));
     var day = date.getDate();
     var month = date.getMonth() + 1;
@@ -15,10 +14,10 @@ var showObject = function(container, objectPath, materialPath, timestamp) {
     const HEIGHT = container.clientWidth;
 
     // Set some camera attributes.
-    const VIEW_ANGLE = 45;
+    const VIEW_ANGLE = 60;
     const ASPECT = WIDTH / HEIGHT;
     const NEAR = 0.1;
-    const FAR = 10000;
+    const FAR = 1000;
 
     // Create a WebGL renderer, camera
     // and a scene
@@ -39,6 +38,8 @@ var showObject = function(container, objectPath, materialPath, timestamp) {
 
     // Add the camera to the scene.
     scene.add(camera);
+    camera.lookAt(new THREE.Vector3(0,0,0));
+    camera.position.set(-390, 90, -80);
 
     // Start the renderer.
     renderer.setSize(WIDTH, HEIGHT);
@@ -86,16 +87,33 @@ var showObject = function(container, objectPath, materialPath, timestamp) {
 
     };
 
+    function countVertice(str) {
+        const re = /v /g
+        return ((str || '').match(re) || []).length
+    }
+
+    function countPolygon(str) {
+        const re = /f /g
+        return ((str || '').match(re) || []).length
+    }
+
     var onError = function() {};
     THREE.Loader.Handlers.add(/\\.dds$/i, new THREE.DDSLoader());
 
     new THREE.MTLLoader().load(materialPath, function(materials) {
         materials.preload();
         new THREE.OBJLoader().setMaterials(materials).load(objectPath, function(object) {
-            object.position.y = -95;
-            object.scale.set(1000, 1000, 1000);
+            object.position.set(0, 0, 0);
             scene.add(object);
-            console.log(object);
+
+            var box = new THREE.Box3().setFromObject(object);
+            const sphere = new THREE.Sphere(new THREE.Vector3(0, 0, 0), 0);
+            let radius = box.getBoundingSphere(sphere).radius;
+            let scale = 200/radius;
+            object.scale.multiplyScalar(scale);
+
+            getObjectDetails(object, renderer);
+
         }, onProgress, onError);
     });
 
@@ -106,8 +124,42 @@ var showObject = function(container, objectPath, materialPath, timestamp) {
 
         // Schedule the next frame.
         requestAnimationFrame(update);
+    }
 
-        //renderer.setSize(container.clientWidth / 2, container.clientWidth / 2);
+
+    function getObjectDetails(object, renderer){
+        console.log(object);
+
+        //Polygon
+        //document.getElementById('polygonCount').innerHTML = "" + renderer.info.render.triangles;
+
+        var verticesCount = 0;
+        var polygonCount = 0;
+
+        var rawFile = new XMLHttpRequest();
+        rawFile.open("GET", objectPath, false);
+        rawFile.onreadystatechange = function ()
+        {
+            if(rawFile.readyState === 4)
+            {
+                if(rawFile.status === 200 || rawFile.status == 0)
+                {
+                    var allText = rawFile.responseText;
+                    verticesCount = countVertice(allText);
+                    polygonCount = countPolygon(allText);
+                }
+            }
+        }
+        rawFile.send(null);
+
+        document.getElementById('polygonsCount').innerHTML = polygonCount;
+        document.getElementById('verticesCount').innerHTML = verticesCount;
+
+        if(object.materialLibraries.length > 0)
+            document.getElementById('material').innerHTML = "Yes";
+        else
+            document.getElementById('material').innerHTML = "No";
+
     }
 
     // Schedule the first frame.

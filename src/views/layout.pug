@@ -12,28 +12,29 @@
   limitations under the License
 html(lang='en', xmlns='http://www.w3.org/1999/html')
   head
-    include ./includes/header.jade
+    include ./includes/header.pug
 
- 
+
   body
+    script(src='js/d3.min.js')
+    script(src='js/getmdl-select.min.js')
+    script(src='js/material.min.js')
+    script(src='js/nv.d3.min.js')
+    script(src='js/layout.min.js')
+    script(src='js/chart1.min.js')
+    script(src='js/chart2.min.js')
+    script(src='js/discreteBarChart.min.js')
+    script(src='js/line-chart-nvd3.min.js')
+    script(src='js/employer-form.min.js')
+    script(src='js/maps.min.js')
+    script(src='js/pie-chart-nvd3.min.js')
+    script(src='js/table.min.js')
+    script(src='js/todo.min.js')
     .mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header.is-small-screen
-      include ./includes/top_menu.jade
+      include ./includes/top_menu.pug
 
-      include ./includes/navigation_menu.jade
+      include ./includes/navigation_menu.pug
 
       block content
 
-  script(src='js/d3.min.js')
-  script(src='js/getmdl-select.min.js')
-  script(src='js/material.min.js')
-  script(src='js/nv.d3.min.js')
-  script(src='js/layout.min.js')
-  script(src='js/chart1.min.js')
-  script(src='js/chart2.min.js')
-  script(src='js/discreteBarChart.min.js')
-  script(src='js/line-chart-nvd3.min.js')
-  script(src='js/employer-form.min.js')
-  script(src='js/maps.min.js')
-  script(src='js/pie-chart-nvd3.min.js')
-  script(src='js/table.min.js')
-  script(src='js/todo.min.js')
+

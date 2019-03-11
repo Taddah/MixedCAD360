@@ -33,7 +33,7 @@ gulp.task('check-js-style', function () {
 
 gulp.task('serve', ['default', 'watch'], function () {
     var files = [
-        './dist/*.jade',
+        './dist/*.pug',
         './dist/public/css/**/*.css',
         './dist/public/js/**/*.js'
     ];
@@ -48,7 +48,7 @@ gulp.task('serve', ['default', 'watch'], function () {
 gulp.task('start', ['build'], function (done) {
     nodemon({
       script: './dist/bin/www/www'
-    , ext: 'js jade css scss'
+    , ext: 'js pug css scss'
     , env: { 'NODE_ENV': 'development' }
     , done: done
     });
@@ -71,7 +71,7 @@ gulp.task('babel', ['scss'], function () {
 gulp.task('watch', function () {
     gulp.watch('./src/**/*.scss', ['default']);
     gulp.watch('./src/**/*.js', ['default']);
-    gulp.watch('./src/**/*.jade', ['default']);
+    gulp.watch('./src/**/*.pug', ['default']);
 });
 
 gulp.task('jshint', ['babel', 'scss'], function () {

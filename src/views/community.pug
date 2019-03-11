@@ -1,0 +1,10 @@
+
+extends ./layout.pug
+
+block content
+  main.mdl-layout__content
+    .mdl-grid.mdl-grid--no-spacing
+      .mdl-grid.mdl-cell.mdl-cell--9-col-desktop.mdl-cell--12-col-tablet.mdl-cell--4-col-phone.mdl-cell--top
+        for object in objects
+          include ./object_preview
+          +objectPreview(object)

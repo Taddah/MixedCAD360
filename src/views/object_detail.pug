@@ -1,0 +1,104 @@
+extends ./layout.pug
+
+block content
+  main.mdl-layout__content
+    .mdl-grid
+      .mdl-grid.mdl-cell.mdl-cell--9-col-desktop.mdl-cell--12-col-tablet.mdl-cell--4-col-phone.mdl-cell--top
+        .mdl-cell.mdl-cell--8-col-desktop.mdl-cell--8-col-tablet.mdl-cell--3-col-phone
+          .mdl-card.mdl-shadow--2dp
+            .mdl-card__title
+              h2.mdl-card__title-text #{object.objectname}
+            .mdl-card__supporting-text
+              .mdl-grid
+                .mdl-cell.mdl-cell--6-col
+                  #containerThreeJS
+
+                .mdl-cell.mdl-cell--6-col
+                  ul.mdl-list
+                    li.mdl-list__item
+                      span.mdl-list__item-primary-content.list__item-text Author
+                      span.mdl-list__item-secondary-content
+                      span#author.mdl-list__item-secondary-content.trending__percent #{object.username}
+                    li.mdl-list__item.list__item--border-top
+                      span.mdl-list__item-primary-content.list__item-text Upload date
+                      span.mdl-list__item-secondary-content
+                      span#date.mdl-list__item-secondary-content.trending__percent DATE
+                    li.mdl-list__item.list__item--border-top
+                      span.mdl-list__item-primary-content.list__item-text Vertice count
+                      span.mdl-list__item-secondary-content
+                      span#verticesCount.mdl-list__item-secondary-content.trending__percent XXXXX
+                    li.mdl-list__item.list__item--border-top
+                      span.mdl-list__item-primary-content.list__item-text Polygon count
+                      span.mdl-list__item-secondary-content
+                      span#polygonsCount.mdl-list__item-secondary-content.trending__percent XXXXX
+                    li.mdl-list__item.list__item--border-top
+                      span.mdl-list__item-primary-content Material
+                      span.mdl-list__item-secondary-content
+                      span#material.mdl-list__item-secondary-content.trending__percent MATERIAL
+                  .mdl-grid
+                    .mdl-cell.mdl-cell--2-col
+                      form.form(role='form', action='/augmentedReality', method='post')
+                        .form__article
+                          .mdl-grid
+                            input#identifiant(type='hidden', name='objectId', value=object._id)
+                        .form__action
+                          button#submit_button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored(type='submit')
+                            | AR
+                    .mdl-cell.mdl-cell--2-col
+                      form.form(role='form', action='/objectdetail', method='post')
+                        .form__article
+                          .mdl-grid
+                            input#identifiant(type='hidden', name='objectId', value=object._id)
+                        .form__action
+                          button#submit_button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored-blue.pull-right(type='submit' data-upgraded=',MaterialButton,MaterialRipple', style='')
+                            | VR
+                            span.mdl-button__ripple-container
+                              span.mdl-ripple.is-animating(style='width: 270.763px; height: 270.763px; transform: translate(-50%, -50%) translate(71px, 28px);')
+
+        .mdl-cell.mdl-cell--4-col-desktop.mdl-cell--4-col-tablet.mdl-cell--2-col-phone
+          .mdl-card.mdl-shadow--2dp
+            .mdl-card__title
+              h2.mdl-card__title-text Commentaires
+            .mdl-card__supporting-text
+              form.form(role='form', action="/register",method="post")
+                .form__article
+                  .mdl-grid
+                    .mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.is-dirty.is-upgraded(data-upgraded=',MaterialTextfield')
+                      input#qualification.mdl-textfield__input(value='0', type='text', readonly='', tabindex='-1')
+                      label.mdl-textfield__label(for='note') Note
+                      .mdl-menu__container.is-upgraded(style='left: 0px; top: 48px; width: 319px; height: 208px;')
+                        .mdl-menu__outline.mdl-menu--bottom-left(style='width: 319px; height: 208px;')
+                        ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu.dark_dropdown(for='note', data-upgraded=',MaterialMenu', style='')
+                          li.mdl-menu__item(data-vivaldi-spatnav-clickable='1', tabindex='-1', style='') 0
+                          li.mdl-menu__item(data-vivaldi-spatnav-clickable='1', tabindex='-1', style='') 1
+                          li.mdl-menu__item(data-vivaldi-spatnav-clickable='1', tabindex='-1', style='') 2
+                          li.mdl-menu__item(data-vivaldi-spatnav-clickable='1', tabindex='-1', style='') 3
+                          li.mdl-menu__item(data-vivaldi-spatnav-clickable='1', tabindex='-1', style='') 4
+                          li.mdl-menu__item(data-vivaldi-spatnav-clickable='1', tabindex='-1', style='') 5
+                      label(for='note')
+                        i.mdl-icon-toggle__label.material-icons arrow_drop_down
+                  .mdl-grid
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.is-upgraded(data-upgraded=',MaterialTextfield')
+                      textarea#AboutMe.mdl-textfield__input(type='text', rows='3')
+                      label.mdl-textfield__label(for='AboutMe') About me
+                .form__action
+                  button#submit_button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored(type='submit')
+                    | Register
+
+
+
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js')
+  script(src='https://threejs.org/examples/js/loaders/OBJLoader.js')
+  script(src='https://threejs.org/examples/js/loaders/FBXLoader.js')
+  script(src='https://threejs.org/examples/js/controls/OrbitControls.js')
+  script(src='https://threejs.org/examples/js/libs/inflate.min.js')
+  script(src='https://threejs.org/examples/js/libs/stats.min.js')
+  script(src='https://threejs.org/examples/js/loaders/MTLLoader.js')
+  script(src='https://threejs.org/examples/js/loaders/DDSLoader.js')
+
+  script(src='js/view3DObject.min.js')
+  script.
+    showObject(document.getElementById('containerThreeJS'), '#{object.objectPath}', '#{object.materialPath}', '#{object.timestamp}');
+
+
+
