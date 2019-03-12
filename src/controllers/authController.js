@@ -3,7 +3,6 @@ var passport = require("passport");
 var User = require("../models/user");
 var Object = require("../models/object");
 
-
 var userController = {};
 
 // Restrict access to root page
@@ -40,7 +39,7 @@ userController.register = function(req, res) {
 
 // Post registration
 userController.doRegister = function(req, res) {
-  User.register(new User({ username : req.body.username, objects : 0 }), req.body.password, function(err, user) {
+  User.register(new User({ username : req.body.username, objects : 0, mail: req.body.mail }), req.body.password, function(err, user) {
     if (err) {
       return res.render('register', { user : user });
     }

@@ -1,130 +1,252 @@
-extends ./layout.pug
-
-block content
-	main.mdl-layout__content
-		.mdl-card.mdl-shadow--2dp.employer-form(action='#')
-			.mdl-card__title
-				h2 Form
-				.mdl-card__subtitle Please complete the form
-			.mdl-card__supporting-text
-				form.form(action='#')
-				.form__article
-					h3 Personal data
-					.mdl-grid
-					.mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-						input#firstName.mdl-textfield__input(type='text', value='Luke')
-						label.mdl-textfield__label(for='firstName') First name
-					.mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-						input#secondName.mdl-textfield__input(type='text', value='Skywalker')
-						label.mdl-textfield__label(for='secondName') Second name
-					.mdl-grid
-					.mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-						input#birthday.mdl-textfield__input(type='text', value='25 May, 1977')
-						label.mdl-textfield__label(for='birthday') Birthday
-					.mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select
-						input#gender.mdl-textfield__input(value='Male', type='text', readonly='', tabindex='-1')
-						label.mdl-textfield__label(for='gender') Gender
-						ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu.dark_dropdown(for='gender')
-						li.mdl-menu__item Male
-						li.mdl-menu__item Female
-						label(for='gender')
-						i.mdl-icon-toggle__label.material-icons arrow_drop_down
-				.form__article
-					h3 Employment
-					.mdl-grid
-					.mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-						input#company.mdl-textfield__input(type='text', value='CreativeIT', disabled='')
-						label.mdl-textfield__label(for='company') Company
-					.mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-						input#company_email.mdl-textfield__input(type='text', value='hello@creativit.io', disabled='')
-						label.mdl-textfield__label(for='company_email') Company email
-					.mdl-grid
-					.mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-						input#position.mdl-textfield__input(type='text', value='Lead developer')
-						label.mdl-textfield__label(for='position') Position
-					.mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select
-						input#qualification.mdl-textfield__input(value='Senior', type='text', readonly='', tabindex='-1')
-						label.mdl-textfield__label(for='qualification') Qualification
-						ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu.dark_dropdown(for='qualification')
-						li.mdl-menu__item Young Padawan
-						li.mdl-menu__item Junior
-						li.mdl-menu__item Middle
-						li.mdl-menu__item Senior
-						label(for='qualification')
-						i.mdl-icon-toggle__label.material-icons arrow_drop_down
-					span Type of employment:
-					label.mdl-radio.mdl-js-radio.mdl-js-ripple-effect(for='partition-fulltime')
-					input#partition-fulltime.mdl-radio__button(type='radio', name='employment', value='1', checked='')
-					span.mdl-radio__label Fulltime
-					label.mdl-radio.mdl-js-radio.mdl-js-ripple-effect(for='partition-partTime')
-					input#partition-partTime.mdl-radio__button(type='radio', name='employment', value='2')
-					span.mdl-radio__label Part time
-					label.mdl-radio.mdl-js-radio.mdl-js-ripple-effect(for='partition-remote')
-					input#partition-remote.mdl-radio__button(type='radio', name='employment', value='3')
-					span.mdl-radio__label Remote
-				.form__article.employer-form__contacts
-					h3 Contacts
-					.mdl-grid
-					.mdl-cell.mdl-cell--9-col.input-group
-						i.material-icons.pull-left call
-						.mdl-textfield.mdl-js-textfield.pull-left
-						input#phone.mdl-textfield__input(type='text')
-						label.mdl-textfield__label(for='phone') XXX-XX-XX
-					.mdl-cell.mdl-cell--3-col.mdl-textfield.mdl-js-textfield.getmdl-select
-						input#phone_type.mdl-textfield__input(value='Mobile', type='text', readonly='', tabindex='-1')
-						ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu.dark_dropdown(for='phone_type')
-						li.mdl-menu__item Mobile
-						li.mdl-menu__item Home
-						li.mdl-menu__item Work
-						label(for='phone_type')
-						i.mdl-icon-toggle__label.material-icons arrow_drop_down
-					.mdl-grid
-					.mdl-cell.mdl-cell--9-col.input-group
-						img(src='images/skype.svg')
-						.mdl-textfield.mdl-js-textfield.pull-left
-						input#skype.mdl-textfield__input(type='text', value='Pilot_luke')
-						label.mdl-textfield__label(for='skype') Skype
-					.mdl-cell.mdl-cell--3-col.mdl-textfield.mdl-js-textfield.getmdl-select
-						input#skype_type.mdl-textfield__input(value='Personal', type='text', readonly='', tabindex='-1')
-						ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu.dark_dropdown(for='skype_type')
-						li.mdl-menu__item Personal
-						li.mdl-menu__item Work
-						label(for='skype_type')
-						i.mdl-icon-toggle__label.material-icons arrow_drop_down
-					.mdl-grid
-					.mdl-cell.mdl-cell--9-col.input-group
-						i.material-icons.pull-left mail_outline
-						.mdl-textfield.mdl-js-textfield.pull-left
-						input#email.mdl-textfield__input(type='text', value='luke@skywalker.com')
-						label.mdl-textfield__label(for='email') Email
-					.mdl-cell.mdl-cell--3-col.mdl-textfield.mdl-js-textfield.getmdl-select
-						input#email_type.mdl-textfield__input(value='Work', type='text', readonly='', tabindex='-1')
-						ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu.dark_dropdown(for='email_type')
-						li.mdl-menu__item Personal
-						li.mdl-menu__item Work
-						label(for='email_type')
-						i.mdl-icon-toggle__label.material-icons arrow_drop_down
-					.mdl-grid
-					.mdl-cell.mdl-cell--9-col.input-group
-						i.material-icons.pull-left place
-						.mdl-textfield.mdl-js-textfield.pull-left
-						input#address.mdl-textfield__input(type='text')
-						label.mdl-textfield__label(for='address') Address
-					.mdl-cell.mdl-cell--3-col.mdl-textfield.mdl-js-textfield.getmdl-select
-						input#address_type.mdl-textfield__input(value='Home', type='text', readonly='', tabindex='-1')
-						ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu.dark_dropdown(for='address_type')
-						li.mdl-menu__item Home
-						li.mdl-menu__item Work
-						label(for='address_type')
-						i.mdl-icon-toggle__label.material-icons arrow_drop_down
-				.form__article.employer-form__general_skills
-					h3 General skills
-					.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-					textarea#AboutMe.mdl-textfield__input(type='text', rows='3')
-					label.mdl-textfield__label(for='AboutMe') About me
-				.form__action
-					label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect(for='isInfoReliable')
-					input#isInfoReliable.mdl-checkbox__input(type='checkbox', required='')
-					span.mdl-checkbox__label Entered information is reliable
-					button#submit_button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored
-					| Submit
+doctype html
+//
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  https://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+html(lang='en', xmlns='http://www.w3.org/1999/html')
+  head
+    link(rel='icon', type='image/png', href='images/DB_16х16.png')
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='description', content='A front-end template that helps you build fast, modern mobile web apps.')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Material Dashboard Lite
+    // Add to homescreen for Chrome on Android
+    meta(name='mobile-web-app-capable', content='yes')
+    // Add to homescreen for Safari on iOS
+    meta(name='apple-mobile-web-app-capable', content='yes')
+    meta(name='apple-mobile-web-app-status-bar-style', content='black')
+    meta(name='apple-mobile-web-app-title', content='Material Design Lite')
+    // Tile icon for Win8 (144x144 + tile color)
+    meta(name='msapplication-TileImage', content='images/touch/ms-touch-icon-144x144-precomposed.png')
+    meta(name='msapplication-TileColor', content='#3372DF')
+    // SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones
+    //
+      <link rel="canonical" href="http://www.example.com/">
+    link(href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,100,700,900', rel='stylesheet', type='text/css')
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+    // inject:css
+    link(rel='stylesheet', href='css/lib/getmdl-select.min.css')
+    link(rel='stylesheet', href='css/lib/nv.d3.min.css')
+    link(rel='stylesheet', href='css/application.min.css')
+    // endinject
+  body
+    .mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header
+      header.mdl-layout__header
+        .mdl-layout__header-row
+          .mdl-layout-spacer
+          .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable
+            label.mdl-button.mdl-js-button.mdl-button--icon(for='search')
+              i.material-icons search
+            .mdl-textfield__expandable-holder
+              input#search.mdl-textfield__input(type='text')
+              label.mdl-textfield__label(for='search') Enter your query...
+          #notification.material-icons.mdl-badge.mdl-badge--overlap.mdl-button--icon.notification(data-badge='23')
+            | notifications_none
+          ul.mdl-menu.mdl-list.mdl-js-menu.mdl-js-ripple-effect.mdl-menu--bottom-right.mdl-shadow--2dp.notifications-dropdown(for='notification')
+            li.mdl-list__item
+              | You have 23 new notifications!
+            li.mdl-menu__item.mdl-list__item.list__item--border-top
+              span.mdl-list__item-primary-content
+                span.mdl-list__item-avatar.background-color--primary
+                  i.material-icons plus_one
+                span You have 3 new orders.
+              span.mdl-list__item-secondary-content
+                span.label just now
+            li.mdl-menu__item.mdl-list__item.list__item--border-top
+              span.mdl-list__item-primary-content
+                span.mdl-list__item-avatar.background-color--secondary
+                  i.material-icons error_outline
+                span Database error
+              span.mdl-list__item-secondary-content
+                span.label 1 min
+            li.mdl-menu__item.mdl-list__item.list__item--border-top
+              span.mdl-list__item-primary-content
+                span.mdl-list__item-avatar.background-color--primary
+                  i.material-icons new_releases
+                span The Death Star is built!
+              span.mdl-list__item-secondary-content
+                span.label 2 hours
+            li.mdl-menu__item.mdl-list__item.list__item--border-top
+              span.mdl-list__item-primary-content
+                span.mdl-list__item-avatar.background-color--primary
+                  i.material-icons mail_outline
+                span You have 4 new mails.
+              span.mdl-list__item-secondary-content
+                span.label 5 days
+            li.mdl-list__item.list__item--border-top
+              button.mdl-button.mdl-js-button.mdl-js-ripple-effect(href='#') ALL NOTIFICATIONS
+          #inbox.material-icons.mdl-badge.mdl-badge--overlap.mdl-button--icon.message(data-badge='4')
+            | mail_outline
+          ul.mdl-menu.mdl-list.mdl-js-menu.mdl-js-ripple-effect.mdl-menu--bottom-right.mdl-shadow--2dp.messages-dropdown(for='inbox')
+            li.mdl-list__item
+              | You have 4 new messages!
+            li.mdl-menu__item.mdl-list__item.mdl-list__item--two-line.list__item--border-top
+              span.mdl-list__item-primary-content
+                span.mdl-list__item-avatar.background-color--primary
+                  text A
+                span Alice
+                span.mdl-list__item-sub-title Birthday Party
+              span.mdl-list__item-secondary-content
+                span.label.label--transparent just now
+            li.mdl-menu__item.mdl-list__item.mdl-list__item--two-line.list__item--border-top
+              span.mdl-list__item-primary-content
+                span.mdl-list__item-avatar.background-color--baby-blue
+                  text M
+                span Mike
+                span.mdl-list__item-sub-title No theme
+              span.mdl-list__item-secondary-content
+                span.label.label--transparent 5 min
+            li.mdl-menu__item.mdl-list__item.mdl-list__item--two-line.list__item--border-top
+              span.mdl-list__item-primary-content
+                span.mdl-list__item-avatar.background-color--cerulean
+                  text D
+                span Darth
+                span.mdl-list__item-sub-title Suggestion
+              span.mdl-list__item-secondary-content
+                span.label.label--transparent 23 hours
+            li.mdl-menu__item.mdl-list__item.mdl-list__item--two-line.list__item--border-top
+              span.mdl-list__item-primary-content
+                span.mdl-list__item-avatar.background-color--mint
+                  text D
+                span Don McDuket
+                span.mdl-list__item-sub-title NEWS
+              span.mdl-list__item-secondary-content
+                span.label.label--transparent 30 Nov
+            li.mdl-list__item.list__item--border-top
+              button.mdl-button.mdl-js-button.mdl-js-ripple-effect(href='#') SHOW ALL MESSAGES
+          #icon.avatar-dropdown
+            span Luke
+            img(src='images/Icon_header.png')
+          ul.mdl-menu.mdl-list.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect.mdl-shadow--2dp.account-dropdown(for='icon')
+            li.mdl-list__item.mdl-list__item--two-line
+              span.mdl-list__item-primary-content
+                span.material-icons.mdl-list__item-avatar
+                span Luke
+                span.mdl-list__item-sub-title Luke@skywalker.com
+            li.list__item--border-top
+            li.mdl-menu__item.mdl-list__item
+              span.mdl-list__item-primary-content
+                i.material-icons.mdl-list__item-icon account_circle
+                |                         My account
+            li.mdl-menu__item.mdl-list__item
+              span.mdl-list__item-primary-content
+                i.material-icons.mdl-list__item-icon check_box
+                |                         My tasks
+              span.mdl-list__item-secondary-content
+                span.label.background-color--primary 3 new
+            li.mdl-menu__item.mdl-list__item
+              span.mdl-list__item-primary-content
+                i.material-icons.mdl-list__item-icon perm_contact_calendar
+                |                         My events
+            li.list__item--border-top
+            li.mdl-menu__item.mdl-list__item
+              span.mdl-list__item-primary-content
+                i.material-icons.mdl-list__item-icon settings
+                |                         Settings
+            li.mdl-menu__item.mdl-list__item
+              span.mdl-list__item-primary-content
+                i.material-icons.mdl-list__item-icon.text-color--secondary exit_to_app
+                |                         Log out
+          button#more.mdl-button.mdl-js-button.mdl-button--icon
+            i.material-icons more_vert
+          ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect.mdl-shadow--2dp.settings-dropdown(for='more')
+            li.mdl-menu__item
+              | Settings
+            a.mdl-menu__item(href='https://github.com/CreativeIT/getmdl-dashboard/issues')
+              | Support
+            li.mdl-menu__item
+              | F.A.Q.
+      .mdl-layout__drawer
+        header darkboard
+        nav.mdl-navigation
+          a.mdl-navigation__link(href='index.html')
+            i.material-icons(role='presentation') dashboard
+            |                     Dashboard
+          .sub-navigation
+            a.mdl-navigation__link
+              i.material-icons view_comfy
+              |                         UI
+              i.material-icons keyboard_arrow_down
+            .mdl-navigation
+              a.mdl-navigation__link(href='ui-buttons.html')
+                | Buttons
+              a.mdl-navigation__link(href='ui-cards.html')
+                | Cards
+              a.mdl-navigation__link(href='ui-colors.html')
+                | Colors
+              a.mdl-navigation__link(href='ui-components.html')
+                | Components
+              a.mdl-navigation__link(href='ui-icons.html')
+                | Icons
+              a.mdl-navigation__link(href='ui-typography.html')
+                | Typography
+          a.mdl-navigation__link.mdl-navigation__link--current(href='forms.html')
+            i.material-icons(role='presentation') person
+            |                     Account
+          a.mdl-navigation__link(href='maps.html')
+            i.material-icons(role='presentation') map
+            |                     Maps
+          a.mdl-navigation__link(href='charts.html')
+            i.material-icons multiline_chart
+            |                     Charts
+          .mdl-layout-spacer
+          a.mdl-navigation__link(href='https://github.com/CreativeIT/getmdl-dashboard')
+            i.material-icons(role='presentation') link
+            |                     GitHub
+      main.mdl-layout__content.mdl-color--grey-100
+        .mdl-card.mdl-shadow--2dp.employer-form(action='#')
+          .mdl-card__title
+            h2 Form
+            .mdl-card__subtitle Please complete the form
+          .mdl-card__supporting-text
+            form.form(action='#')
+              .form__article.employer-form__contacts
+                h3 Contacts
+                .mdl-grid
+                  .mdl-cell.mdl-cell--3-col.mdl-textfield.mdl-js-textfield.getmdl-select
+                    input#skype_type.mdl-textfield__input(value='Personal', type='text', readonly='', tabindex='-1')
+                    ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu.dark_dropdown(for='skype_type')
+                      li.mdl-menu__item Personal
+                      li.mdl-menu__item Work
+                    label(for='skype_type')
+                      i.mdl-icon-toggle__label.material-icons arrow_drop_down
+              .form__article.employer-form__general_skills
+                h3 General skills
+                .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+                  textarea#AboutMe.mdl-textfield__input(type='text', rows='3')
+                  label.mdl-textfield__label(for='AboutMe') About me
+              .form__action
+                label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect(for='isInfoReliable')
+                  input#isInfoReliable.mdl-checkbox__input(type='checkbox', required='')
+                  span.mdl-checkbox__label Entered information is reliable
+                button#submit_button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored
+                  | Submit
+    // inject:js
+    script(src='js/d3.min.js')
+    script(src='js/getmdl-select.min.js')
+    script(src='js/material.min.js')
+    script(src='js/nv.d3.min.js')
+    script(src='js/layout.min.js')
+    script(src='js/chart1.min.js')
+    script(src='js/chart2.min.js')
+    script(src='js/discreteBarChart.min.js')
+    script(src='js/line-chart-nvd3.min.js')
+    script(src='js/employer-form.min.js')
+    script(src='js/maps.min.js')
+    script(src='js/pie-chart-nvd3.min.js')
+    script(src='js/table.min.js')
+    script(src='js/todo.min.js')
+    script.
+      document.getElementById("uploadBtn").onchange = function () {
+      document.getElementById("uploadFile").value = this.files[0].name;
+      };
+    // endinject

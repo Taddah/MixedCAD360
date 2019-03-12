@@ -60,30 +60,8 @@ block content
             .mdl-card__title
               h2.mdl-card__title-text Commentaires
             .mdl-card__supporting-text
-              form.form(role='form', action="/register",method="post")
-                .form__article
-                  .mdl-grid
-                    .mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.is-dirty.is-upgraded(data-upgraded=',MaterialTextfield')
-                      input#qualification.mdl-textfield__input(value='0', type='text', readonly='', tabindex='-1')
-                      label.mdl-textfield__label(for='note') Note
-                      .mdl-menu__container.is-upgraded(style='left: 0px; top: 48px; width: 319px; height: 208px;')
-                        .mdl-menu__outline.mdl-menu--bottom-left(style='width: 319px; height: 208px;')
-                        ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu.dark_dropdown(for='note', data-upgraded=',MaterialMenu', style='')
-                          li.mdl-menu__item(data-vivaldi-spatnav-clickable='1', tabindex='-1', style='') 0
-                          li.mdl-menu__item(data-vivaldi-spatnav-clickable='1', tabindex='-1', style='') 1
-                          li.mdl-menu__item(data-vivaldi-spatnav-clickable='1', tabindex='-1', style='') 2
-                          li.mdl-menu__item(data-vivaldi-spatnav-clickable='1', tabindex='-1', style='') 3
-                          li.mdl-menu__item(data-vivaldi-spatnav-clickable='1', tabindex='-1', style='') 4
-                          li.mdl-menu__item(data-vivaldi-spatnav-clickable='1', tabindex='-1', style='') 5
-                      label(for='note')
-                        i.mdl-icon-toggle__label.material-icons arrow_drop_down
-                  .mdl-grid
-                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.is-upgraded(data-upgraded=',MaterialTextfield')
-                      textarea#AboutMe.mdl-textfield__input(type='text', rows='3')
-                      label.mdl-textfield__label(for='AboutMe') About me
-                .form__action
-                  button#submit_button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored(type='submit')
-                    | Register
+              include ./upload_comment
+              +newComment(object._id)
 
 
 

@@ -15,12 +15,27 @@
               label.mdl-textfield__label(for='objectDescription') Description
           .mdl-grid
             .mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-              input(type='file', name='object', accept='.obj,.fbx', required)
-              label.mdl-textfield__label(for='object') 3D model
+              .mdl-textfield.mdl-js-textfield.mdl-textfield--file
+                input#uploadFileObject.mdl-textfield__input(placeholder='3D Model', type='text', readonly='')
+                .mdl-button.mdl-button--primary.mdl-button--icon.mdl-button--file
+                  i.material-icons attach_file
+                  input#uploadBtnObject(type='file', name='object', accept='.obj,.fbx', required)
           .mdl-grid
             .mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-              input(type='file', name='material', accept='.mtl')
-              label.mdl-textfield__label(for='material') Material (optional)
+              .mdl-textfield.mdl-js-textfield.mdl-textfield--file
+                input#uploadFileMaterial.mdl-textfield__input(placeholder='Material', type='text', readonly='')
+                .mdl-button.mdl-button--primary.mdl-button--icon.mdl-button--file
+                  i.material-icons attach_file
+                  input#uploadBtnMaterial(type='file', name='material', accept='.mtl')
         .form__action
           button#submit_button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored(type='submit')
             | Submit
+
+script.
+      document.getElementById("uploadBtnObject").onchange = function () {
+      document.getElementById("uploadFileObject").value = this.files[0].name;
+      };
+
+      document.getElementById("uploadBtnMaterial").onchange = function () {
+      document.getElementById("uploadFileMaterial").value = this.files[0].name;
+      };

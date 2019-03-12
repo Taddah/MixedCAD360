@@ -5,7 +5,7 @@ var multer  = require('multer');
 var path = require('path');
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'dist/public/uploads')
+    cb(null, 'dist/public/uploads/objects')
   },
   filename: (req, file, cb) => {
     cb(null, file.fieldname + '-' + Date.now())
@@ -14,6 +14,7 @@ var storage = multer.diskStorage({
 var upload = multer({storage: storage});
 var Object = require("../models/object");
 var UserSchema = require("../models/user");
+var Comment = require("../models/comment");
 
 // restrict index for logged in user only
 router.get('/', auth.home);
@@ -63,12 +64,31 @@ router.post('/augmentedReality', (req, res, next) => {
     res.render('login');
 });
 
+router.post('/newComment', (req, res, next) => {
+  if(req.user != null){
+    console.log("here");
+    console.log(req.body.note);
+    console.log(req.body.comment);
+    const newComment = new Comment({
+      idObject: req.body.idObject,
+      note: req.body.note,
+      comment: req.body.comment
+    });
+
+    newComment.save();
+  }
+
+  res.redirect("/objectdetail");
+})
+
 router.post('/processobjectupload', upload.fields([{ name: 'object', maxCount: 1 },{ name: 'material', maxCount: 1 }]), (req, res, next) => {
   const newObject = new Object({ 
-    objectPath: 'uploads/' + req.files.object[0].filename,
-    materialPath: 'uploads/' + req.files.material[0].filename,
+    objectPath: 'uploads/objects/' + req.files.object[0].filename,
+    materialPath: 'uploads/objects/' + req.files.material[0].filename,
     username: req.user.username,
-    objectname: req.body.objectName });
+    objectname: req.body.objectName,
+    timestamp: Date.now()
+    });
 
   newObject.save();
 

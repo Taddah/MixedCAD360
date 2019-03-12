@@ -1,0 +1,27 @@
+mixin newComment(objectId)
+	form.form(role='form', action="/newComment",method="post")
+		.form__article
+			.mdl-grid
+				.form__article.employer-form__contacts
+					h3 Note
+					.mdl-grid
+						.mdl-cell.mdl-cell--3-col.mdl-textfield.mdl-js-textfield.getmdl-select
+							input#note.mdl-textfield__input(value='3', type='text', readonly='', tabindex='-1', name='note')
+							ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu.dark_dropdown(for='note')
+								li.mdl-menu__item 1
+								li.mdl-menu__item 2
+								li.mdl-menu__item 3
+								li.mdl-menu__item 4
+								li.mdl-menu__item 5
+							label(for='note')
+								i.mdl-icon-toggle__label.material-icons arrow_drop_down
+			.mdl-grid
+				.form__article.employer-form__general_skills
+					.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+						textarea#comment.mdl-textfield__input(type='text', name='comment')
+						label.mdl-textfield__label(for='comment') Comment
+
+						input#idObject(type='hidden', name='idObject', value=objectId)
+		.form__action
+			button#submit_button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored(type='submit')
+				| Submit

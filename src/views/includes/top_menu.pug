@@ -17,39 +17,25 @@ header.mdl-layout__header
         li.mdl-list__item.mdl-list__item--two-line
           span.mdl-list__item-primary-content
             span.material-icons.mdl-list__item-avatar
-            span Luke
-            span.mdl-list__item-sub-title Luke@skywalker.com
+            span #{user.username}
+            span.mdl-list__item-sub-title #{user.mail}
         li.list__item--border-top
         li.mdl-menu__item.mdl-list__item
-          span.mdl-list__item-primary-content
-            i.material-icons.mdl-list__item-icon account_circle
-            |                         My account
+          a(href='/')
+            span.mdl-list__item-primary-content
+              i.material-icons.mdl-list__item-icon account_circle
+              |                         My account
+        li.mdl-menu__item.mdl-list__item
+          a(href='/myObjects')
+            span.mdl-list__item-primary-content
+              i.material-icons.mdl-list__item-icon map
+              |                         My objects
+              span.mdl-list__item-secondary-content
+                span.label.background-color--primary #{user.objects}
+          li.list__item--border-top
         li.mdl-menu__item.mdl-list__item
           span.mdl-list__item-primary-content
-            i.material-icons.mdl-list__item-icon check_box
-            |                         My tasks
-          span.mdl-list__item-secondary-content
-            span.label.background-color--primary 3 new
-        li.mdl-menu__item.mdl-list__item
-          span.mdl-list__item-primary-content
-            i.material-icons.mdl-list__item-icon perm_contact_calendar
-            |                         My events
-        li.list__item--border-top
-        li.mdl-menu__item.mdl-list__item
-          span.mdl-list__item-primary-content
-            i.material-icons.mdl-list__item-icon settings
-            |                         Settings
-        li.mdl-menu__item.mdl-list__item
-          span.mdl-list__item-primary-content(href='/logout')
-            i.material-icons.mdl-list__item-icon.text-color--secondary exit_to_app
-            |                         Log out
-      button#more.mdl-button.mdl-js-button.mdl-button--icon
-        i.material-icons more_vert
-      ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect.mdl-shadow--2dp.settings-dropdown(for='more')
-        li.mdl-menu__item
-          | Settings
-        a.mdl-menu__item(href='https://github.com/CreativeIT/getmdl-dashboard/issues')
-          | Support
-        li.mdl-menu__item
-          | F.A.Q.
+            a(href='/logout')
+              i.material-icons.mdl-list__item-icon.text-color--secondary exit_to_app
+              |                         Log out
 
