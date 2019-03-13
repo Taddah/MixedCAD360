@@ -6,6 +6,8 @@ var ObjectSchema = new Schema({
     materialPath: String,
     username: String,
     objectname: String,
+    nbComment: Number,
+    note: Number,
     timestamp: String
 });
 

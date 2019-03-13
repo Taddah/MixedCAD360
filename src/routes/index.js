@@ -5,7 +5,7 @@ var multer  = require('multer');
 var path = require('path');
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'dist/public/uploads/objects')
+    cb(null, 'dist/public/uploads')
   },
   filename: (req, file, cb) => {
     cb(null, file.fieldname + '-' + Date.now())
@@ -45,8 +45,6 @@ router.get('/form', (req, res, next) => {
 router.post('/objectdetail', (req, res, next) => {
   if(req.user != null){
     Object.findOne({ _id: req.body.objectId}, function (err, docs) {
-      console.log(docs)
-      console.log(req.body.objectId)
       res.render('object_detail', { user : req.user, object : docs});
     });
   }
@@ -66,27 +64,36 @@ router.post('/augmentedReality', (req, res, next) => {
 
 router.post('/newComment', (req, res, next) => {
   if(req.user != null){
-    console.log("here");
-    console.log(req.body.note);
-    console.log(req.body.comment);
+
     const newComment = new Comment({
-      idObject: req.body.idObject,
-      note: req.body.note,
-      comment: req.body.comment
+      comment: req.body.comment,
+      object: req.body.idObject
     });
 
     newComment.save();
-  }
 
-  res.redirect("/objectdetail");
+    Object.updateOne(
+      { _id: req.body.idObject },
+      {$set: { note: 10 }}, 
+      {$inc: { nbComment: 1 }}
+      ,true);
+
+    Object.findOneAndUpdate({ _id: req.body.idObject}, {$set: {note: moyenne}}, function (err, docs) {
+      res.render('object_detail', { user : req.user, object : docs});
+    });
+  }
+  else
+    res.render('login');
 })
 
 router.post('/processobjectupload', upload.fields([{ name: 'object', maxCount: 1 },{ name: 'material', maxCount: 1 }]), (req, res, next) => {
   const newObject = new Object({ 
-    objectPath: 'uploads/objects/' + req.files.object[0].filename,
-    materialPath: 'uploads/objects/' + req.files.material[0].filename,
+    objectPath: 'uploads/' + req.files.object[0].filename,
+    materialPath: 'uploads/' + req.files.material[0].filename,
     username: req.user.username,
     objectname: req.body.objectName,
+    note: 0,
+    nbComment: 0,
     timestamp: Date.now()
     });
 

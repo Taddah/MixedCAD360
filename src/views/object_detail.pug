@@ -35,6 +35,11 @@ block content
                       span.mdl-list__item-primary-content Material
                       span.mdl-list__item-secondary-content
                       span#material.mdl-list__item-secondary-content.trending__percent MATERIAL
+                    if(object.note > 0)
+                      li.mdl-list__item.list__item--border-top
+                        span.mdl-list__item-primary-content Note
+                        span.mdl-list__item-secondary-content
+                        span#material.mdl-list__item-secondary-content.trending__percent #{object.note}
                   .mdl-grid
                     .mdl-cell.mdl-cell--2-col
                       form.form(role='form', action='/augmentedReality', method='post')

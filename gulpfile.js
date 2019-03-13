@@ -31,9 +31,9 @@ gulp.task('check-js-style', function () {
         .pipe(gulp.dest('src'));
 });
 
-gulp.task('serve', ['default', 'watch'], function () {
+gulp.task('serve', ['build', 'watch'], function () {
     var files = [
-        './dist/*.pug',
+        './dist/**/*.pug',
         './dist/public/css/**/*.css',
         './dist/public/js/**/*.js'
     ];
@@ -82,25 +82,38 @@ gulp.task('jshint', ['babel', 'scss'], function () {
 
 gulp.task('default', ['cleanDist', 'jshint', 'babel', 'copyJsLib', 'copyCssLib'], function () {
 
+    gulp.src('src/*.html')
+        .pipe(gulp.dest('dist/public/'))
+        .pipe(inject(gulp.src(['dist/public/js/**/*.js', 'dist/public/css/lib/*.css',
+            'dist/public/css/*.css'], {read: false}), {relative: true}))
+        .pipe(gulp.dest('dist/'));
+
     gulp.src('src/public/images/**/*')
         .pipe(gulp.dest('dist/public/images'));
 
+    gulp.src('src/public/uploads/**/*')
+        .pipe(gulp.dest('dist/public/uploads'));    
+    
     gulp.src('src/routes/**/*')
         .pipe(gulp.dest('dist/routes'));
 
     gulp.src('src/views/**/*')
         .pipe(gulp.dest('dist/views'));
 
-    gulp.src('src/app.js')
-        .pipe(gulp.dest('dist/'));
+    gulp.src('src/controllers/**/*')
+        .pipe(gulp.dest('dist/controllers'));
+
+    gulp.src('src/models/**/*')
+        .pipe(gulp.dest('dist/models'));
 
     gulp.src('src/bin/www')
         .pipe(gulp.dest('dist/bin/www'));
 
-    gulp.src('src/**/*.html')
-        .pipe(gulp.dest('dist/'))
-        .pipe(inject(gulp.src(['dist/public/js/**/*.js', 'dist/public/css/lib/*.css', 'dist/public/css/*.css'], {read: false}), {relative: true}))
+    gulp.src('src/app.js')
         .pipe(gulp.dest('dist/'));
+
+    gulp.src('*.*', {read: false})
+        .pipe(gulp.dest('./dist/public/uploads'))
 });
 
 gulp.task('copyJsLib', ['cleanDist'], function () {
