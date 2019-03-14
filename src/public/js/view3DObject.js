@@ -84,7 +84,6 @@ var showObject = function(container, objectPath, materialPath, timestamp) {
             var percentComplete = xhr.loaded / xhr.total * 100;
             console.log(Math.round(percentComplete, 2) + '% downloaded');
         }
-
     };
 
     function countVertice(str) {
@@ -128,7 +127,6 @@ var showObject = function(container, objectPath, materialPath, timestamp) {
 
 
     function getObjectDetails(object, renderer){
-        console.log(object);
 
         //Polygon
         //document.getElementById('polygonCount').innerHTML = "" + renderer.info.render.triangles;

@@ -3,8 +3,23 @@
 extends ./layout.pug
 
 block content
-  if (!user)
-    a Non Connecte
-  if (user)
-    a Welcome #{user.username}
+  main.mdl-layout__content
+    .mdl-grid
+      .mdl-grid.mdl-cell.mdl-cell--12-col-desktop.mdl-cell--12-col-tablet.mdl-cell--12-col-phone.mdl-cell--top
+        .mdl-cell.mdl-cell--8-col-desktop.mdl-cell--8-col-tablet.mdl-cell--3-col-phone
+          .mdl-card.mdl-shadow--2dp
+            .mdl-card__title
+              h2.mdl-card__title-text Mixed CAD 360
+            .mdl-card__supporting-text
+              p
+                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras molestie neque et ligula sagittis, non feugiat magna blandit. Vivamus porttitor eros sit amet tortor molestie, quis aliquam velit scelerisque. Ut vel sapien nec sem porta facilisis ut pretium metus. Morbi nec elit ligula. Fusce at orci ut arcu fermentum consectetur. Maecenas ac malesuada neque, vel semper purus. Donec volutpat nulla vel tempus fringilla. Aliquam erat volutpat. Ut ut maximus dui.
+                br
+                | Nunc eleifend felis in aliquam tempor. Nullam est lorem, pellentesque vitae volutpat non, rutrum interdum est. Vestibulum lobortis, elit eu varius congue, justo lectus dapibus sem, sit amet vulputate nisi arcu ac dolor. Sed dapibus nisi at leo tincidunt lacinia. Mauris vel eros rhoncus, faucibus orci a, faucibus eros. Fusce vitae laoreet nibh. Phasellus condimentum blandit ipsum, dapibus facilisis lorem sagittis et. Nulla sagittis nisi ac justo accumsan molestie. Sed iaculis blandit est id dictum. Phasellus vehicula diam et justo porttitor blandit. Integer consequat leo tincidunt dui convallis imperdiet. Praesent rutrum vestibulum libero eget rutrum. Maecenas et finibus leo.
+                br
+                | Nunc lobortis, orci vel elementum dignissim, quam metus faucibus elit, vel convallis quam urna at magna. Nullam imperdiet, orci vitae luctus consectetur, ligula magna euismod ligula, quis suscipit felis neque vitae felis. Phasellus sapien sapien, euismod at ligula a, luctus sollicitudin ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id enim vel nisl aliquam luctus. In hac habitasse platea dictumst. Etiam in dui non ante viverra volutpat at et libero. Donec semper nec mauris in vulputate. Duis vel eros porttitor diam sodales dapibus.
+                br
+                | Nunc molestie feugiat dolor id laoreet. Curabitur eu felis eleifend, bibendum dolor rhoncus, faucibus sem. Proin leo lacus, facilisis sed tortor ut, blandit vestibulum tortor. Nam ac odio ex. Suspendisse tristique dapibus arcu non porta. Integer ac nulla maximus, efficitur lacus nec, tempus erat. Aenean orci mi, pharetra vel ex at, iaculis mattis eros. Morbi id elementum nibh. Vivamus tellus nisl, tristique vel augue vel, rhoncus mollis libero. Nullam nunc metus, elementum in mollis sed, sagittis sit amet odio. Suspendisse potenti.
+                br
+                | Praesent urna felis, hendrerit et leo id, euismod lacinia risus. Quisque finibus justo libero, quis viverra nibh semper vel. Cras rhoncus quam ipsum, sit amet gravida orci sodales eu. Nullam enim massa, molestie scelerisque ullamcorper sed, egestas ac ipsum. Fusce nec enim dictum, pharetra mauris id, tincidunt leo. In neque urna, faucibus at ex sed, tempor hendrerit eros. Sed sit amet dolor sodales mauris maximus pellentesque a at nunc.
+
 

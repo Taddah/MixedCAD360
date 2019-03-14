@@ -7,11 +7,11 @@
         .form__article
           .mdl-grid
             .mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-              input#identifiant.mdl-textfield__input(type='text', name='objectName', required, autofocus)
+              input#objectName.mdl-textfield__input(type='text', name='objectName', required, autofocus)
               label.mdl-textfield__label(for='objectName') Name
           .mdl-grid
             .mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-              input#identifiant.mdl-textfield__input(type='text', name='objectDescription', required, autofocus)
+              input#objectDescription.mdl-textfield__input(type='text', name='objectDescription', required, autofocus)
               label.mdl-textfield__label(for='objectDescription') Description
           .mdl-grid
             .mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
@@ -19,7 +19,7 @@
                 input#uploadFileObject.mdl-textfield__input(placeholder='3D Model', type='text', readonly='')
                 .mdl-button.mdl-button--primary.mdl-button--icon.mdl-button--file
                   i.material-icons attach_file
-                  input#uploadBtnObject(type='file', name='object', accept='.obj,.fbx', required)
+                  input#uploadBtnObject(type='file', name='object', accept='.obj', required)
           .mdl-grid
             .mdl-cell.mdl-cell--6-col.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
               .mdl-textfield.mdl-js-textfield.mdl-textfield--file

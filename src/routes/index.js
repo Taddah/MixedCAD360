@@ -44,8 +44,11 @@ router.get('/form', (req, res, next) => {
 
 router.post('/objectdetail', (req, res, next) => {
   if(req.user != null){
-    Object.findOne({ _id: req.body.objectId}, function (err, docs) {
-      res.render('object_detail', { user : req.user, object : docs});
+    Object.findOne({ _id: req.body.objectId}, function (err, objectFound) {
+      Comment.find({object: objectFound}, function (err, commentsFound) {
+        console.log(commentsFound[0])
+        res.render('object_detail', { user : req.user, object : objectFound, comments : commentsFound});
+      });
     });
   }
   else
@@ -67,20 +70,34 @@ router.post('/newComment', (req, res, next) => {
 
     const newComment = new Comment({
       comment: req.body.comment,
+      author: req.user.username,
       object: req.body.idObject
     });
 
     newComment.save();
 
-    Object.updateOne(
-      { _id: req.body.idObject },
-      {$set: { note: 10 }}, 
-      {$inc: { nbComment: 1 }}
-      ,true);
+   Object.findOne({ _id: req.body.idObject}, function (err, objectFound) {
+    if(err) console.log(err);
 
-    Object.findOneAndUpdate({ _id: req.body.idObject}, {$set: {note: moyenne}}, function (err, docs) {
-      res.render('object_detail', { user : req.user, object : docs});
+    objectFound.notes.push(req.body.note);
+    var arr = objectFound.notes;
+
+    var total = 0;
+    for(var i = 0; i < arr.length; i++) {
+        total += arr[i];
+    }
+    var avg = total / arr.length;
+    avg = avg.toFixed(1);
+
+    objectFound.average = avg;
+    
+    objectFound.save(function(err, newObject) {
+      if(err) console.log(err);
+      Comment.find({object: newObject}, function (err, commentsFound) {
+        res.render('object_detail', { user : req.user, object : newObject, comments : commentsFound});
+      });
     });
+  });
   }
   else
     res.render('login');
@@ -94,6 +111,7 @@ router.post('/processobjectupload', upload.fields([{ name: 'object', maxCount: 1
     objectname: req.body.objectName,
     note: 0,
     nbComment: 0,
+    description: req.body.objectDescription,
     timestamp: Date.now()
     });
 

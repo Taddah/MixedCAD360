@@ -35,11 +35,11 @@ block content
                       span.mdl-list__item-primary-content Material
                       span.mdl-list__item-secondary-content
                       span#material.mdl-list__item-secondary-content.trending__percent MATERIAL
-                    if(object.note > 0)
+                    if(object.average > 0)
                       li.mdl-list__item.list__item--border-top
                         span.mdl-list__item-primary-content Note
                         span.mdl-list__item-secondary-content
-                        span#material.mdl-list__item-secondary-content.trending__percent #{object.note}
+                        span#material.mdl-list__item-secondary-content.trending__percent #{object.average}
                   .mdl-grid
                     .mdl-cell.mdl-cell--2-col
                       form.form(role='form', action='/augmentedReality', method='post')
@@ -50,7 +50,7 @@ block content
                           button#submit_button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored(type='submit')
                             | AR
                     .mdl-cell.mdl-cell--2-col
-                      form.form(role='form', action='/objectdetail', method='post')
+                      form.form(role='form', action='#', method='post')
                         .form__article
                           .mdl-grid
                             input#identifiant(type='hidden', name='objectId', value=object._id)
@@ -63,12 +63,21 @@ block content
         .mdl-cell.mdl-cell--4-col-desktop.mdl-cell--4-col-tablet.mdl-cell--2-col-phone
           .mdl-card.mdl-shadow--2dp
             .mdl-card__title
-              h2.mdl-card__title-text Commentaires
+              h2.mdl-card__title-text New comment
             .mdl-card__supporting-text
               include ./upload_comment
               +newComment(object._id)
 
-
+    .mdl-grid
+      .mdl-grid.mdl-cell.mdl-cell--12-col-desktop.mdl-cell--12-col-tablet.mdl-cell--12-col-phone.mdl-cell--top
+        .mdl-cell.mdl-cell--8-col-desktop.mdl-cell--8-col-tablet.mdl-cell--3-col-phone
+          .mdl-card.mdl-shadow--2dp
+            .mdl-card__title
+              h2.mdl-card__title-text Comments
+            .mdl-card__supporting-text
+              for com in comments
+                include ./comment
+                +showComment(com)
 
   script(src='https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js')
   script(src='https://threejs.org/examples/js/loaders/OBJLoader.js')
