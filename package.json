@@ -52,6 +52,7 @@
   },
   "homepage": "https://github.com/CreativeIT/dashboard#readme",
   "dependencies": {
+    "archiver": "^3.0.0",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.5",
     "errorhandler": "^1.5.0",

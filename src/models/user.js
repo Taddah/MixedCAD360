@@ -7,6 +7,7 @@ var UserSchema = new Schema({
     password: String,
     objects: Number,
     mail: String,
+    credit: Number,
     profilPicture: String
 });
 
