@@ -73,6 +73,8 @@
     "pug": "^2.0.3",
     "pug-lint": "^2.5.0",
     "three": "^0.101.1",
-    "three-fbx-loader": "^1.0.3"
+    "three-fbx-loader": "^1.0.3",
+    "wait.for": "^0.6.6",
+    "zip-stream": "^2.0.1"
   }
 }

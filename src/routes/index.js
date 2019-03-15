@@ -4,7 +4,7 @@ var auth = require("../controllers/authController.js");
 var multer  = require('multer');
 var path = require('path');
 var JSZip = require('jszip');
-//var archiver = require('archiver');
+var archiver = require('archiver');
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'dist/public/uploads')
@@ -53,26 +53,28 @@ router.post('/download', (req, res, next) => {
       Object.findOne({ _id: req.body.objectId}, function (err, objectFound) {
         var objectFile =  "dist/public/" + objectFound.objectPath;
         var materialFile = "dist/public/" + objectFound.materialPath;
+    
         /*
-        var archive = archiver('zip');
-
-        res.attachment('archive.zip');
-        archive.pipe(res);
-
-        archive.file(objectFile, {name: objectFound.objectname+'.obj'});
-        archive.file(materialFile, 'material.mtl');
-
-        archive.finalize();*/
-
-        /*
-        var zip = new JSZip();
-        zip.file(objectFile);
-        zip.file(materialFile);
-        zip.generateAsync({type: 'blob'}, (err) =>{
-          if(err)
-            console.log(err);
+        res.set('Content-Type', 'application/zip');
+        res.set('Content-Disposition', 'attachment; filename=archive.zip');
+    
+        var ZipStream = require('zip-stream');
+        var zip = new ZipStream();
+    
+        zip.on('error', function (err) {
+            throw err;
         });
-        */
+    
+        zip.pipe(res);
+
+        zip.entry(objectFile, {name: 'object.obj'});
+        zip.entry(materialFile, {name: 'material.mtl'});
+    
+    
+        zip.finalize();
+*/
+        
+  
    
         //res.render('login');
         res.download(objectFile, 'object.obj');
