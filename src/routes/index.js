@@ -3,6 +3,7 @@ var router = express.Router();
 var auth = require("../controllers/authController.js");
 var multer  = require('multer');
 var path = require('path');
+var JSZip = require('jszip')
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'dist/public/uploads')
@@ -40,6 +41,29 @@ router.get('/community', auth.community);
 
 router.get('/form', (req, res, next) => {
   res.render('form');
+});
+
+router.post('/download', (req, res, next) => {
+  if(req.user != null){
+    Object.findOne({ _id: req.body.objectId}, function (err, objectFound) {
+      var file = __dirname + "/" + objectFound.objectPath;
+      
+      var options = {
+        root: 'public/',
+        dotfiles: 'deny',
+        headers: {
+          'x-timestamp': Date.now(),
+          'x-sent': true,
+          'Content-Type': 'text/plain'
+        }
+      };
+
+      res.send(objectFound.objectPath, options);
+      res.render('my_object');
+    });
+  }
+  else
+    res.render('login');
 });
 
 router.post('/objectdetail', (req, res, next) => {

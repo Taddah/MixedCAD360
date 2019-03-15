@@ -40,25 +40,28 @@ block content
                         span.mdl-list__item-primary-content Note
                         span.mdl-list__item-secondary-content
                         span#material.mdl-list__item-secondary-content.trending__percent #{object.average}
-                  .mdl-grid
-                    .mdl-cell.mdl-cell--2-col
-                      form.form(role='form', action='/augmentedReality', method='post')
-                        .form__article
-                          .mdl-grid
-                            input#identifiant(type='hidden', name='objectId', value=object._id)
-                        .form__action
-                          button#submit_button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored(type='submit')
-                            | AR
-                    .mdl-cell.mdl-cell--2-col
-                      form.form(role='form', action='#', method='post')
-                        .form__article
-                          .mdl-grid
-                            input#identifiant(type='hidden', name='objectId', value=object._id)
-                        .form__action
-                          button#submit_button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored-blue.pull-right(type='submit' data-upgraded=',MaterialButton,MaterialRipple', style='')
-                            | VR
-                            span.mdl-button__ripple-container
-                              span.mdl-ripple.is-animating(style='width: 270.763px; height: 270.763px; transform: translate(-50%, -50%) translate(71px, 28px);')
+                  
+                  if (user)
+                    .mdl-grid
+                      .mdl-cell.mdl-cell--2-col
+                        form.form(role='form', action='/augmentedReality', method='post')
+                          .form__article
+                            .mdl-grid
+                              input#identifiant(type='hidden', name='objectId', value=object._id)
+                          .form__action
+                            button#submit_button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored(type='submit')
+                              | AR
+                      .mdl-cell.mdl-cell--1-col
+                      .mdl-cell.mdl-cell--4-col
+                        form.form(role='form', action='/download', method='post')
+                          .form__article
+                            .mdl-grid
+                              input#identifiant(type='hidden', name='objectId', value=object._id)
+                          .form__action
+                            button#submit_button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored-blue.pull-right(type='submit' data-upgraded=',MaterialButton,MaterialRipple', style='')
+                              | Download
+                              span.mdl-button__ripple-container
+                                span.mdl-ripple.is-animating(style='width: 270.763px; height: 270.763px; transform: translate(-50%, -50%) translate(71px, 28px);')
 
         .mdl-cell.mdl-cell--4-col-desktop.mdl-cell--4-col-tablet.mdl-cell--2-col-phone
           .mdl-card.mdl-shadow--2dp

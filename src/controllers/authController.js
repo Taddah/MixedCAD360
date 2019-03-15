@@ -23,13 +23,11 @@ userController.myObjects = function(req, res) {
 
 // Restrict access to community page
 userController.community = function(req, res) {
-  if(req.user != null){
+  
     Object.find({ }, function (err, docs) {
       res.render('community', { user : req.user, objects : docs});
     });
-  }
-  else
-    res.render('login');
+
 };
 
 // Go to registration page
@@ -39,6 +37,7 @@ userController.register = function(req, res) {
 
 // Post registration
 userController.doRegister = function(req, res) {
+  console.log(req.body.mail);
   User.register(new User({ username : req.body.username, objects : 0, mail: req.body.mail }), req.body.password, function(err, user) {
     if (err) {
       return res.render('register', { user : user });
