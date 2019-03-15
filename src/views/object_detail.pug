@@ -62,14 +62,14 @@ block content
                               | Download
                               span.mdl-button__ripple-container
                                 span.mdl-ripple.is-animating(style='width: 270.763px; height: 270.763px; transform: translate(-50%, -50%) translate(71px, 28px);')
-
-        .mdl-cell.mdl-cell--4-col-desktop.mdl-cell--4-col-tablet.mdl-cell--2-col-phone
-          .mdl-card.mdl-shadow--2dp
-            .mdl-card__title
-              h2.mdl-card__title-text New comment
-            .mdl-card__supporting-text
-              include ./upload_comment
-              +newComment(object._id)
+        if (user)
+          .mdl-cell.mdl-cell--4-col-desktop.mdl-cell--4-col-tablet.mdl-cell--2-col-phone
+            .mdl-card.mdl-shadow--2dp
+              .mdl-card__title
+                h2.mdl-card__title-text New comment
+              .mdl-card__supporting-text
+                include ./upload_comment
+                +newComment(object._id)
 
     .mdl-grid
       .mdl-grid.mdl-cell.mdl-cell--12-col-desktop.mdl-cell--12-col-tablet.mdl-cell--12-col-phone.mdl-cell--top
