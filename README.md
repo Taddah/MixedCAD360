@@ -1,7 +1,6 @@
 # Mixed CAD 360
 
-# SETUP and USAGE
-The steps bellow will take you through cloning your own fork, installing dependencies and building:
+# Install
 
 1. Install [mongoDB](https://www.mongodb.com)
 
